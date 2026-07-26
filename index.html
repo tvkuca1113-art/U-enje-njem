@@ -111,10 +111,10 @@ body.session .topbar{display:none}
 .brand-logo{width:34px;height:34px;border-radius:11px;background:linear-gradient(150deg,var(--green),var(--green-dark));
   display:grid;place-items:center;box-shadow:0 5px 14px rgba(18,130,86,.34);flex:none}
 .brand-txt{line-height:1.05;min-width:0}
-.brand-txt b{display:block;font-size:13.5px;letter-spacing:.11em;font-weight:800;text-transform:uppercase}
+.brand-txt b{display:block;font-size:13.5px;letter-spacing:.11em;font-weight:800;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .brand-txt span{display:block;font-size:10.5px;color:var(--muted);font-weight:600;letter-spacing:.02em;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.stat{display:flex;align-items:center;gap:5px;font-weight:800;font-size:14px;padding:7px 11px;border-radius:var(--r-pill);
+.stat{display:flex;align-items:center;gap:5px;font-weight:800;font-size:14px;padding:7px 11px;border-radius:var(--r-pill);flex:none;white-space:nowrap;
   background:var(--white);box-shadow:var(--sh-1);font-variant-numeric:tabular-nums}
 .stat.fire{color:var(--yellow-dark)}
 .stat.hp{color:var(--coral-dark)}
@@ -293,7 +293,7 @@ body.session .topbar{display:none}
 .phrase::after{content:"";position:absolute;right:-40px;bottom:-40px;width:150px;height:150px;border-radius:50%;
   background:radial-gradient(circle,rgba(35,178,109,.35),transparent 68%)}
 .phrase .eyebrow{color:#7FE0B4}
-.phrase q{display:block;font-size:19px;font-weight:800;line-height:1.35;letter-spacing:-.02em;margin:8px 0 4px;quotes:"„" """}
+.phrase q{display:block;font-size:19px;font-weight:800;line-height:1.35;letter-spacing:-.02em;margin:8px 0 4px;quotes:"\201E" "\201C"}
 .phrase .bcs{color:#9FB4C8}
 .phrase .row{display:flex;gap:8px;margin-top:14px;position:relative;z-index:1}
 .phrase .icon-btn{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff}
@@ -606,6 +606,14 @@ body.session .toasts{bottom:calc(20px + env(safe-area-inset-bottom))}
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;
     transition-duration:.05ms !important;scroll-behavior:auto !important}
   .hero-ecg{display:none}
+}
+@media(max-width:440px){
+  .brand-txt span{display:none}
+  .topbar{padding:calc(env(safe-area-inset-top) + 9px) 12px 9px}
+  .topbar-in{gap:6px}
+}
+@media(max-width:389px){
+  .brand-txt{display:none}
 }
 @media(max-width:360px){
   .q-title{font-size:20px}
