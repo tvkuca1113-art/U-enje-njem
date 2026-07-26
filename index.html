@@ -1940,7 +1940,7 @@ function addXP(amount, opts = {}) {
   const beforeGoal = S.dailyXP >= S.dailyGoal;
   S.xp += amount;
   S.dailyXP += amount;
-  today().xp += amount;
+  dayStats().xp += amount;
   S.week[dayKey()] = (S.week[dayKey()] || 0) + amount;
   touchStreak();
   if (opts.at) xpFloat(opts.at, '+' + amount + ' XP');
@@ -4073,7 +4073,7 @@ function init() {
   Object.keys(S.week).forEach(k => { if (daysDiff(k, today) > 14) delete S.week[k]; });
   saveState();
 
-  today(); checkQuests();
+  dayStats(); checkQuests();
   try {
     matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
       if ((S.settings.theme || 'auto') === 'auto') applyTheme();
@@ -4115,7 +4115,7 @@ function init() {
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-else init();
+else setTimeout(init, 0);   // nie synchron: der Rest des Skripts muss erst ausgewertet sein
 
 /* ==========================================================================
    22. AUDIO-ENGINE
@@ -5404,14 +5404,16 @@ const themeLabel = () => ({ auto:'Wie im System', light:'Immer hell', dark:'Imme
 /* ==========================================================================
    31. TAGESAUFGABEN
    ========================================================================== */
-/** Tageszähler; wird beim Datumswechsel automatisch geleert. */
-function today() {
+/** Tageszähler; wird beim Datumswechsel automatisch geleert.
+    Name absichtlich nicht „today“: mehrere Funktionen haben eine lokale
+    Variable „today“ für den Tagesschlüssel, die sie sonst verdecken würde. */
+function dayStats() {
   if (!S.today || S.today.day !== dayKey())
     S.today = { day:dayKey(), xp:0, words:0, speak:0, blitz:0, match:0, dialog:0, perfect:0 };
   return S.today;
 }
 function bump(key, n = 1) {
-  const t = today();
+  const t = dayStats();
   t[key] = (t[key] || 0) + n;
   saveState();
   checkQuests();
@@ -5440,7 +5442,7 @@ function checkQuests() {
   if (questBusy) return;
   questBusy = true;
   try {
-    const t = today();
+    const t = dayStats();
     if (!S.claimed || S.claimed.day !== t.day) S.claimed = { day:t.day, ids:[] };
     questIds().forEach(id => {
       const q = QUESTS[id];
@@ -5455,7 +5457,7 @@ function checkQuests() {
 }
 
 function questCardHTML() {
-  const t = today();
+  const t = dayStats();
   const ids = questIds();
   const claimed = (S.claimed && S.claimed.day === t.day) ? S.claimed.ids : [];
   const doneCount = ids.filter(id => claimed.indexOf(id) >= 0).length;
