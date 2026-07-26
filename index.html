@@ -607,6 +607,185 @@ body.session .toasts{bottom:calc(20px + env(safe-area-inset-bottom))}
     transition-duration:.05ms !important;scroll-behavior:auto !important}
   .hero-ecg{display:none}
 }
+/* Dialog-Player */
+.dl-list{display:flex;flex-direction:column;gap:8px}
+.dl-line{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;font:inherit;cursor:pointer;
+  appearance:none;-webkit-appearance:none;background:var(--white);border:2px solid var(--line);
+  border-radius:var(--r);padding:12px;transition:border-color .2s,background .2s}
+.dl-line:hover{border-color:var(--mint-2)}
+.dl-line.on{border-color:var(--green);background:var(--mint);box-shadow:0 6px 18px rgba(35,178,109,.16)}
+.dl-sp{flex:none;font-size:10px;font-weight:800;color:#fff;padding:4px 8px;border-radius:8px;
+  letter-spacing:.05em;text-transform:uppercase;margin-top:2px}
+.dl-de{display:block;font-size:15.5px;font-weight:700;color:var(--navy);line-height:1.42}
+.dl-bcs{display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.4}
+.dl-play{flex:none;color:var(--muted);margin-top:2px}
+.dl-line.on .dl-play{color:var(--green-dark)}
+.audio-banner{display:flex;gap:10px;align-items:flex-start;background:var(--yellow-soft);border:1px solid #F1DDA2;
+  border-radius:var(--r);padding:12px;margin-top:14px;color:#6A4D00}
+.audio-banner b{font-size:14px}
+/* Rueckmeldung: Modellsatz, Sicherheitshinweis */
+.fb-flag{display:flex;gap:8px;align-items:flex-start;background:rgba(255,255,255,.66);border-radius:12px;
+  padding:10px 11px;margin-top:10px;font-size:12.8px;font-weight:600;color:var(--coral-dark);line-height:1.45}
+.fb-flag svg{flex:none;margin-top:1px}
+.fb-model{background:rgba(255,255,255,.82);border-radius:14px;padding:12px;margin-top:10px}
+/* Stimmenliste */
+.vlist{display:flex;flex-direction:column;gap:8px;margin-top:8px;max-height:44vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.vrow{display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;cursor:pointer;
+  appearance:none;-webkit-appearance:none;background:var(--white);border:2px solid var(--line);border-radius:var(--r);padding:12px}
+.vrow.on{border-color:var(--green);background:var(--mint)}
+.vplay{color:var(--muted);flex:none}
+.chip.on{background:var(--green);border-color:var(--green);color:#fff}
+.feat{border:2px solid var(--violet);box-shadow:0 10px 30px rgba(124,107,232,.15)}
+.mval{min-width:78px;text-align:right;font-size:12.5px}
+/* Onboarding */
+body.onboarding{overflow:hidden}
+.ob{position:fixed;inset:0;z-index:200;background:var(--bg);display:none}
+.ob.show{display:block;animation:screenIn .3s}
+.ob-in{max-width:var(--app-w);margin:0 auto;height:100%;display:flex;flex-direction:column;
+  padding:calc(env(safe-area-inset-top) + 12px) 20px calc(16px + env(safe-area-inset-bottom))}
+.ob-top{display:flex;align-items:center;gap:10px;flex:none}
+.ob-icon{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:var(--white);
+  display:grid;place-items:center;cursor:pointer;color:var(--navy);flex:none}
+.ob-txt{background:none;border:none;font:inherit;font-size:13px;font-weight:700;color:var(--muted);
+  cursor:pointer;margin-left:auto;padding:8px 4px}
+.ob-dots{display:flex;gap:5px;flex:1;justify-content:center;align-items:center}
+.ob-dots i{width:7px;height:7px;border-radius:99px;background:var(--line);transition:.25s}
+.ob-dots i.done{background:var(--mint-2)}
+.ob-dots i.on{background:var(--green);width:20px}
+.ob-body{flex:1;overflow-y:auto;padding:22px 0 10px;-webkit-overflow-scrolling:touch}
+.ob-body h2{font-size:25px;line-height:1.16;letter-spacing:-.03em;font-weight:800;color:var(--navy)}
+.ob-body>p{color:var(--muted);font-size:15px;line-height:1.5;margin-top:8px}
+.ob-mark{width:60px;height:60px;border-radius:20px;background:var(--mint);color:var(--green-dark);
+  display:grid;place-items:center;margin-bottom:16px}
+.ob-mark.ok{background:var(--green);color:#fff}
+.ob-note{font-size:12.5px;color:var(--muted);margin-top:16px;line-height:1.5}
+.ob-opts{display:flex;flex-direction:column;gap:9px;margin-top:20px}
+.ob-opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;cursor:pointer;
+  appearance:none;-webkit-appearance:none;background:var(--white);border:2px solid var(--line);
+  border-radius:var(--r);padding:14px;min-height:58px;transition:border-color .18s,background .18s}
+.ob-opt b{display:block;font-size:15.5px;color:var(--navy)}
+.ob-opt span span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.35}
+.ob-opt.on{border-color:var(--green);background:var(--mint)}
+.ob-check{width:24px;height:24px;border-radius:99px;border:2px solid var(--line);display:grid;
+  place-items:center;color:transparent;flex:none}
+.ob-opt.on .ob-check{background:var(--green);border-color:var(--green);color:#fff}
+.ob-plan{margin-top:18px;background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:6px 14px}
+.ob-foot{flex:none;padding-top:12px}
+/* Tagesplan */
+.plan-card{border:2px solid var(--green);box-shadow:0 10px 30px rgba(35,178,109,.14)}
+.plan-steps{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.plan-step{display:flex;align-items:center;gap:11px;width:100%;text-align:left;font:inherit;cursor:pointer;
+  appearance:none;-webkit-appearance:none;background:var(--bg);border:1px solid var(--line);
+  border-radius:14px;padding:11px 12px;min-height:56px}
+.plan-step.done{opacity:.62}
+.ps-n{width:26px;height:26px;border-radius:99px;background:var(--green);color:#fff;display:grid;
+  place-items:center;font-size:13px;font-weight:800;flex:none}
+.plan-step.done .ps-n{background:var(--green-dark)}
+.ps-l{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.plan-step b{font-size:14.5px;color:var(--navy);display:block;margin-top:2px;line-height:1.3}
+.ps-go{color:var(--green-dark);flex:none}
+/* Bildaufgabe: Name erst nach dem Pruefen */
+.card-opt .opt-name{display:block;font-size:13.5px;font-weight:800;color:var(--navy);
+  margin-top:9px;text-align:center;line-height:1.25}
+.card-opt .opt-name[hidden]{display:none}
+/* Lueckensatz */
+.cloze-sent{font-size:17.5px;font-weight:700;color:var(--green-deep);line-height:1.6}
+.blank{display:inline-block;min-width:72px;text-align:center;background:var(--white);
+  border:2px dashed var(--green);border-radius:9px;color:var(--green-dark);font-weight:800;padding:0 8px;margin:0 2px}
+/* ==========================================================================
+   Dunkler Modus — nur Tokens umschalten, plus wenige gezielte Ausnahmen
+   ========================================================================== */
+html[data-theme="dark"]{
+  --green:#25B573; --green-dark:#4BD79A; --green-deep:#9AF0C6;
+  --mint:#12332A; --mint-2:#1D4B38;
+  --yellow:#FFC94D; --yellow-dark:#FFD87A; --yellow-soft:#3A2E10;
+  --coral:#FF6B70; --coral-dark:#FF9EA1; --coral-soft:#3B1D20;
+  --sky:#5B92FF; --sky-soft:#16283F; --violet:#9B85FF; --violet-soft:#241E42;
+  --navy:#E8F1F8; --navy-2:#AEC1D3; --muted:#8CA1B5;
+  --line:#22374B; --line-2:#1A2A3A;
+  --bg:#0B1520; --white:#132231;
+  --sh-1:0 2px 6px rgba(0,0,0,.34); --sh-2:0 8px 24px rgba(0,0,0,.42); --sh-3:0 18px 44px rgba(0,0,0,.55);
+}
+html[data-theme="dark"] .btn:not(.btn-ghost):not(.btn-outline-green):not(.btn-danger){color:#04241A}
+html[data-theme="dark"] .ps-n,html[data-theme="dark"] .quest.done .q-ico{color:#04241A}
+html[data-theme="dark"] .illu{background:#E9F8F1}
+html[data-theme="dark"] .diff .g{color:#0C6144}
+/* Tagesaufgaben */
+.quests{display:flex;flex-direction:column;gap:13px;margin-top:13px}
+.quest{display:flex;align-items:center;gap:11px}
+.quest .q-ico{width:34px;height:34px;border-radius:11px;background:var(--mint);color:var(--green-dark);
+  display:grid;place-items:center;flex:none}
+.quest.done .q-ico{background:var(--green);color:#fff}
+.quest b{display:block;font-size:13.5px;color:var(--navy);margin-bottom:6px;line-height:1.2}
+.quest .q-xp{font-size:12.5px;font-weight:800;color:var(--muted);flex:none;min-width:44px;text-align:right;
+  font-variant-numeric:tabular-nums}
+.quest.done .q-xp{color:var(--green-dark)}
+/* Spiele */
+.games{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.game-card{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;font:inherit;
+  cursor:pointer;appearance:none;-webkit-appearance:none;border:none;border-radius:var(--r-lg);
+  padding:15px 14px 13px;color:#fff;min-height:158px;transition:transform .18s}
+.game-card:active{transform:scale(.98)}
+.g-blitz{background:linear-gradient(155deg,#FFB524,#DE7500);box-shadow:0 10px 26px rgba(222,117,0,.3)}
+.g-match{background:linear-gradient(155deg,#8E70FF,#5636D6);box-shadow:0 10px 26px rgba(86,54,214,.3)}
+.game-card .g-ico{width:42px;height:42px;border-radius:13px;background:rgba(255,255,255,.22);
+  display:grid;place-items:center;margin-bottom:9px}
+.game-card b{font-size:16px;letter-spacing:-.02em}
+.game-card>span:not(.g-ico):not(.g-meta){font-size:12px;line-height:1.35;opacity:.93}
+.g-meta{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;
+  background:rgba(0,0,0,.18);padding:4px 8px;border-radius:99px;margin-top:auto}
+/* Blitz-Runde */
+.bz-clock{display:inline-flex;align-items:center;gap:5px;font-weight:800;color:var(--navy);
+  font-variant-numeric:tabular-nums;font-size:15px}
+.bz-clock.hot{color:var(--coral-dark);animation:pulseSoft .85s infinite}
+.bz-top{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.bz-score{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:8px 13px;text-align:center}
+.bz-score span{display:block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.bz-score b{font-size:20px;letter-spacing:-.02em;color:var(--navy);font-variant-numeric:tabular-nums}
+.bz-combo{font-size:12.5px;font-weight:800;color:var(--muted);padding:9px 13px;border-radius:99px;background:var(--line-2)}
+.bz-combo.on{background:var(--yellow-soft);color:var(--yellow-dark)}
+.bz-q{text-align:center;padding:26px 12px 22px}
+.bz-q b{display:block;font-size:27px;font-weight:800;letter-spacing:-.03em;line-height:1.22;margin-top:6px;color:var(--navy)}
+.bz-opts{display:flex;flex-direction:column;gap:10px}
+.bz-opt{width:100%;font:inherit;font-size:16px;font-weight:700;color:var(--navy);cursor:pointer;
+  appearance:none;-webkit-appearance:none;background:var(--white);border:2px solid var(--line);
+  border-radius:var(--r);padding:16px 14px;transition:transform .12s,background .14s,border-color .14s}
+.bz-opt:active{transform:scale(.98)}
+.bz-opt.ok{background:var(--mint);border-color:var(--green);color:var(--green-deep)}
+.bz-opt.no{background:var(--coral-soft);border-color:var(--coral);color:var(--coral-dark);animation:shake .4s}
+/* Paare finden */
+.mt-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}
+.mt-tile{font:inherit;font-size:14px;font-weight:700;color:var(--navy);cursor:pointer;min-height:78px;
+  appearance:none;-webkit-appearance:none;background:var(--white);border:2px solid var(--line);
+  border-radius:var(--r);padding:12px 10px;transition:transform .15s,background .15s,border-color .15s,opacity .3s}
+.mt-tile:active{transform:scale(.97)}
+.mt-tile.sel{border-color:var(--sky);background:var(--sky-soft)}
+.mt-tile.bad{border-color:var(--coral);background:var(--coral-soft);animation:shake .4s}
+.mt-tile.pop{border-color:var(--green);background:var(--mint);animation:matchPop .42s}
+.mt-tile.matched{opacity:.34;border-style:dashed}
+@keyframes matchPop{0%{transform:scale(1)}45%{transform:scale(1.07)}100%{transform:scale(1)}}
+@keyframes pulseSoft{0%,100%{opacity:1}50%{opacity:.5}}
+/* Serien-Einblender */
+.combo-pop{position:fixed;left:50%;top:22%;z-index:150;display:flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#FFB524,#DE7500);color:#3A2300;font-weight:800;font-size:16px;
+  padding:12px 18px;border-radius:99px;box-shadow:0 14px 34px rgba(222,117,0,.42);
+  animation:comboFly 1.3s forwards;pointer-events:none}
+@keyframes comboFly{
+  0%{opacity:0;transform:translateX(-50%) scale(.7)}
+  18%{opacity:1;transform:translateX(-50%) scale(1.06)}
+  32%{transform:translateX(-50%) scale(1)}
+  74%{opacity:1;transform:translateX(-50%) scale(1)}
+  100%{opacity:0;transform:translateX(-50%) translateY(-28px) scale(.95)}}
+/* Gestaffelter Bildschirmaufbau */
+@keyframes cardIn{from{opacity:0;transform:translateY(16px) scale(.99)}to{opacity:1;transform:none}}
+.screen.enter>*{animation:cardIn .44s cubic-bezier(.22,.9,.3,1) backwards}
+.screen.enter>*:nth-child(1){animation-delay:.01s}
+.screen.enter>*:nth-child(2){animation-delay:.06s}
+.screen.enter>*:nth-child(3){animation-delay:.11s}
+.screen.enter>*:nth-child(4){animation-delay:.15s}
+.screen.enter>*:nth-child(5){animation-delay:.19s}
+.screen.enter>*:nth-child(6){animation-delay:.22s}
+.screen.enter>*:nth-child(n+7){animation-delay:.25s}
 @media(max-width:440px){
   .brand-txt span{display:none}
   .topbar{padding:calc(env(safe-area-inset-top) + 9px) 12px 9px}
@@ -1604,7 +1783,8 @@ function icon(name, size = 22, sw = 2.2) {
     bolt:'M13 2 4 14h6l-1 8 9-12h-6z',
     check:'M4 12.5 9.5 18 20 6',
     x:'M18 6 6 18M6 6l12 12',
-    play:'M7 4.5 19 12 7 19.5z',
+    play:'M7 4.5 19 12 7 19.5z', pause:'M9 5v14M15 5v14',
+    sun:'M12 7a5 5 0 1 0 0 10a5 5 0 0 0 0-10M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4',
     slow:'M7 4.5 15 12 7 19.5zM19 5v14',
     repeat:'M4 10a6 6 0 0 1 6-6h9M19 4l-3-3M19 4l-3 3M20 14a6 6 0 0 1-6 6H5M5 20l3 3M5 20l3-3',
     lock:'M6 11h12v10H6zM9 11V7a3 3 0 0 1 6 0v4',
@@ -1641,39 +1821,64 @@ const STORE_KEY = 'pflege-deutsch:v1';
 
 /** Startzustand der Demo (Amela, Level 4, 1.240 XP, 7 Tage Serie, 4 Herzen) */
 function defaultState() {
-  const week = {};
-  const seed = [30, 45, 60, 35, 50, 40, 20];           // letzte 7 Tage inkl. heute
-  for (let i = 6; i >= 0; i--) week[dayShift(-i)] = seed[6 - i];
-  const vocab = {};
-  // Wörter aus abgeschlossenen Lektionen gelten als geübt
-  ['pflegekraft','bewohner','bewohnerin','schicht','wunsch','kopf','arm','bein','bauch','hand','haut']
-    .forEach((id, i) => { vocab[id] = srsNew(id, 2 + (i % 3), dayShift(1 + (i % 4))); });
-  // Drei Wörter sind heute fällig
-  ['schmerz','ruecken','uebergabe'].forEach(id => { vocab[id] = srsNew(id, 1, dayKey(), true); });
   return {
-    v: 1,
-    user: { name:'Amela', goal:'Anerkennung als Pflegefachkraft', workplace:'Pflegeheim', country:'Deutschland' },
-    xp: 1240, hearts: 4, heartAt: Date.now(), streak: 7, freeze: 1,
-    lastActive: dayKey(), dailyGoal: 30, dailyXP: 20, week,
-    lessons: { l1:{done:true,perfect:true,best:100}, r1:{done:true,best:100},
-               l2:{done:true,perfect:false,best:80}, r2:{done:true,best:90}, l3:{prog:0.35} },
-    vocab,
-    ach: { a_first:true, a_words:false, a_streak:true },
-    settings: { sound:true, trans:true, remind:true, remindTime:'19:00', speakRate:0.92 },
-    stats: { lessons:2, perfect:1, speakCount:6, speakSec:340, reviewsRight:41, reviewsTotal:47,
-             roleplays:1, longest:9, answers:128, correct:104,
-             types: { image:{r:32,t:36}, build:{r:18,t:26}, listen:{r:14,t:22},
-                      speak:{r:6,t:8}, decision:{r:9,t:11} } },
-    rp: [{ id:'rp_verwirrt', date:dayShift(-2), score:78 }]
+    v: 1, onboarded: false,
+    user: { name:'', goal:'', workplace:'', country:'Deutschland',
+            lang:'bs', exp:'', env:'', level:'', goal2:'', minutes:10 },
+    xp: 0, hearts: MAX_HEARTS, heartAt: Date.now(), streak: 0, freeze: 1,
+    lastActive: dayKey(), dailyGoal: 20, dailyXP: 0, week: {},
+    lessons: {}, vocab: {}, ach: {},
+    settings: { sound:true, trans:true, remind:true, remindTime:'19:00', speakRate:0.92, theme:'auto' },
+    stats: { lessons:0, perfect:0, speakCount:0, speakSec:0, reviewsRight:0, reviewsTotal:0,
+             roleplays:0, longest:0, answers:0, correct:0,
+             types: { image:{r:0,t:0}, build:{r:0,t:0}, listen:{r:0,t:0},
+                      speak:{r:0,t:0}, decision:{r:0,t:0} } },
+    rp: []
   };
 }
 
-/** Neues SRS-Objekt für ein Wort */
-function srsNew(id, step = -1, due = dayKey(), overdue = false) {
-  return { c: Math.max(0, step), w: 0, step, ease: 2.5,
-           due: overdue ? Date.now() - 60000 : new Date(due).getTime(), fav: false };
+/** Beispielprofil zum Vorführen der App (Amela, Level 4). */
+function demoState() {
+  const s = defaultState();
+  const seed = [30, 45, 60, 35, 50, 40, 20];
+  const week = {};
+  for (let i = 6; i >= 0; i--) week[dayShift(-i)] = seed[6 - i];
+  ['pflegekraft','bewohner','bewohnerin','schicht','wunsch','kopf','arm','bein','bauch','hand','haut']
+    .forEach((id, i) => { s.vocab[id] = srsNew(id, 2 + (i % 3), dayShift(1 + (i % 4))); });
+  ['schmerz','ruecken','uebergabe'].forEach(id => { s.vocab[id] = srsNew(id, 1, dayKey(), true); });
+  Object.assign(s, {
+    onboarded: true,
+    user: { name:'Amela', goal:'Gespräche mit Patienten', workplace:'Pflegeheim', country:'Deutschland',
+            lang:'bs', exp:'jetzt', env:'heim', level:'a2', goal2:'patient', minutes:20 },
+    xp: 1240, hearts: 4, streak: 7, dailyGoal: 30, dailyXP: 20, week,
+    lessons: { l1:{done:true,perfect:true,best:100}, r1:{done:true,best:100},
+               l2:{done:true,perfect:false,best:80}, r2:{done:true,best:90}, l3:{prog:0.35} },
+    ach: { a_first:true, a_words:false, a_streak:true },
+    rp: [{ id:'rp_verwirrt', date:dayShift(-2), score:78 }]
+  });
+  Object.assign(s.stats, { lessons:2, perfect:1, speakCount:6, speakSec:340, reviewsRight:41,
+    reviewsTotal:47, roleplays:1, longest:9, answers:128, correct:104,
+    types: { image:{r:32,t:36}, build:{r:18,t:26}, listen:{r:14,t:22},
+             speak:{r:6,t:8}, decision:{r:9,t:11} } });
+  return s;
 }
 
+/** Neuer SRS-Datensatz für ein Wort.
+    step: -1 = unbekannt, 0..n = Stufe in SRS_STEPS.
+    dueDay: optionaler Tagesschlüssel; overdue: sofort fällig stellen. */
+function srsNew(id, step = -1, dueDay, overdue) {
+  const s = clamp(typeof step === 'number' ? step : -1, -1, SRS_STEPS.length - 1);
+  let due;
+  if (dueDay) {
+    due = new Date(dueDay + 'T08:00:00').getTime();
+    if (overdue || isNaN(due)) due = Date.now() - 90 * 60000;
+  } else {
+    due = s >= 0 ? Date.now() + SRS_STEPS[s] * 60000 : Date.now();
+  }
+  return { c: Math.max(0, s + 1), w: s > 1 ? 1 : 0, step: s, ease: 2.5, due, fav: false };
+}
+
+/* Laufender Zustand der App */
 let S = defaultState();
 
 function loadState() {
@@ -1685,6 +1890,10 @@ function loadState() {
     S = Object.assign(defaultState(), parsed);
     S.settings = Object.assign(defaultState().settings, parsed.settings || {});
     S.stats = Object.assign(defaultState().stats, parsed.stats || {});
+    S.user  = Object.assign(defaultState().user,  parsed.user  || {});
+    // Bestandsnutzer ohne Onboarding-Feld: als eingerichtet behandeln, wenn Fortschritt da ist
+    if (parsed.onboarded === undefined)
+      S.onboarded = (parsed.xp > 0) || Object.keys(parsed.lessons || {}).length > 0;
     return true;
   } catch (e) { console.warn('Gespeicherter Fortschritt konnte nicht gelesen werden.', e); return false; }
 }
@@ -1697,10 +1906,9 @@ function saveState() {
 function resetProgress() {
   try { localStorage.removeItem(STORE_KEY); } catch (e) {}
   S = defaultState();
-  S.xp = 0; S.streak = 0; S.dailyXP = 0; S.hearts = MAX_HEARTS; S.lessons = {}; S.vocab = {};
-  S.ach = {}; S.rp = []; S.week = {}; S.stats = { lessons:0, perfect:0, speakCount:0, speakSec:0,
-    reviewsRight:0, reviewsTotal:0, roleplays:0, longest:0, answers:0, correct:0 };
-  saveState(); renderAll(); toast('Fortschritt zurückgesetzt. Viel Erfolg beim Neustart!', 'win');
+  saveState(); renderAll();
+  toast('Alles zurückgesetzt. Wir richten dein Profil neu ein.', 'win');
+  setTimeout(() => startOnboarding(), 400);
 }
 
 function exportProgress() {
@@ -1732,6 +1940,7 @@ function addXP(amount, opts = {}) {
   const beforeGoal = S.dailyXP >= S.dailyGoal;
   S.xp += amount;
   S.dailyXP += amount;
+  today().xp += amount;
   S.week[dayKey()] = (S.week[dayKey()] || 0) + amount;
   touchStreak();
   if (opts.at) xpFloat(opts.at, '+' + amount + ' XP');
@@ -1743,6 +1952,7 @@ function addXP(amount, opts = {}) {
   }
   if (after > before) setTimeout(() => levelUpModal(after), 450);
   checkAchievements();
+  checkQuests();
   saveState(); paintTopbar();
 }
 
@@ -1852,31 +2062,7 @@ function sfx(type) {
   });
 }
 
-/** Deutsche Systemstimme bevorzugen */
-let germanVoice = null;
-function loadVoices() {
-  if (!('speechSynthesis' in window)) return;
-  const v = speechSynthesis.getVoices();
-  germanVoice = v.find(x => /de[-_]DE/i.test(x.lang) && /google|microsoft|anna|petra|katja/i.test(x.name))
-             || v.find(x => /^de/i.test(x.lang)) || null;
-}
-if ('speechSynthesis' in window) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
-const speechOK = () => 'speechSynthesis' in window;
-
-/** Deutschen Text vorlesen */
-function speak(text, rate) {
-  if (!speechOK()) { toast('Dieser Browser unterstützt keine Sprachausgabe.', 'warn'); return; }
-  try {
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(String(text).replace(/[„“"]/g, ''));
-    u.lang = 'de-DE';
-    u.rate = rate || S.settings.speakRate || 0.95;
-    u.pitch = 1;
-    if (germanVoice) u.voice = germanVoice;
-    speechSynthesis.speak(u);
-    return u;
-  } catch (e) { toast('Sprachausgabe nicht verfügbar.', 'warn'); }
-}
+/* Sprachausgabe: siehe Abschnitt 22 — Audio-Engine (Speech) */
 
 /* ==========================================================================
    7. OBERFLÄCHEN-BAUSTEINE — Toast, Modal, Konfetti, XP-Animation
@@ -2010,10 +2196,14 @@ function renderNav() {
 
 /** Bildschirm wechseln */
 function go(id, opts = {}) {
+  Speech.stop(true); Speech.onState = null;
   currentScreen = id;
   $$('.screen').forEach(s => s.classList.remove('active'));
   const el = $('#screen-' + id);
-  if (el) el.classList.add('active');
+  if (el) {
+    el.classList.add('active', 'enter');
+    setTimeout(() => el.classList.remove('enter'), 720);
+  }
   renderNav();
   const r = { home: renderHome, learn: renderLearn, speak: renderSpeak,
               vocab: renderVocab, profile: renderProfile, progress: renderProgress }[id];
@@ -2157,6 +2347,9 @@ function renderHome() {
       </div>
     </section>
 
+    ${planCardHTML()}
+    ${questCardHTML()}
+
     <div class="tiles">
       <button class="tile" type="button" data-goto="progress">
         <span style="color:var(--green-dark)">${icon('bolt',20)}</span><b>${fmt(S.xp)}</b><span>XP gesamt</span></button>
@@ -2181,6 +2374,21 @@ function renderHome() {
       <button class="btn btn-outline-green btn-sm mt10" type="button" data-review="1">
         ${icon('repeat',17,2.4)} ${due.length ? due.length + ' Wörter wiederholen' : 'Freie Wiederholung starten'}</button>
     </div>
+
+    <div class="card feat mt14">
+      <div class="between">
+        <span class="tag cool">Referenz-Lektion</span>
+        <span class="sub" style="font-size:12px">${FEATURE.min} Min · ${FEATURE.level}</span>
+      </div>
+      <h3 style="font-size:19px;font-weight:800;letter-spacing:-.02em;margin-top:8px">${esc(FEATURE.title)}</h3>
+      <p class="sub" style="margin-top:3px">${esc(FEATURE.sub)}</p>
+      <div class="row wrap mt10" style="gap:6px">${FEATURE.skills.map(k => `<span class="tag">${esc(k)}</span>`).join('')}</div>
+      <p class="sub" style="font-size:12.5px;margin-top:10px">Dialog mit zwei Stimmen, Hörverstehen, Reaktion wählen,
+      Übergabe formulieren und eine Entscheidung im Dienst.</p>
+      <button class="btn btn-violet mt14" type="button" data-feature="1">${icon('play',18,2.6)} Lektion starten</button>
+    </div>
+
+    ${gamesRowHTML()}
 
     ${due.length ? `<div class="card review-card mt14">
       <div class="between"><div class="eyebrow" style="color:var(--yellow-dark)">Heute wiederholen</div>
@@ -2580,8 +2788,23 @@ function renderProfile() {
           <button type="button" data-goal="10" aria-label="Tagesziel erhöhen">+</button>
         </div>
       </div>
-      <div class="setting">
+      <button class="setting" type="button" data-appear="1" style="font:inherit;width:100%;text-align:left;cursor:pointer">
+        <div class="si">${icon(resolvedDark() ? 'moon' : 'sun',20)}</div>
+        <div class="st"><b>Darstellung</b><span>${esc(themeLabel())}</span></div>
+        <span style="color:var(--muted);flex:none">${icon('arrow',18)}</span>
+      </button>
+      <button class="setting" type="button" data-onboard="edit" style="font:inherit;width:100%;text-align:left;cursor:pointer">
+        <div class="si">${icon('target',20)}</div>
+        <div class="st"><b>Ziel und Angaben</b><span>Name, Niveau, Umfeld, Lernziel</span></div>
+        <span style="color:var(--muted);flex:none">${icon('arrow',18)}</span>
+      </button>
+      <button class="setting" type="button" data-sheet="voices" style="font:inherit;width:100%;text-align:left;cursor:pointer">
         <div class="si">${icon('volume',20)}</div>
+        <div class="st"><b>Audio und Stimmen</b><span>Stimme wählen, testen und prüfen</span></div>
+        <span style="color:var(--muted);flex:none">${icon('arrow',18)}</span>
+      </button>
+      <div class="setting">
+        <div class="si">${icon('bell',20)}</div>
         <div class="st"><b>Töne und Sprachausgabe</b><span>Effekte und Vorlesen</span></div>
         <button class="switch ${S.settings.sound?'on':''}" type="button" role="switch"
           aria-checked="${S.settings.sound}" data-toggle="sound" aria-label="Töne ein- oder ausschalten"><i></i></button>
@@ -2757,34 +2980,7 @@ function sheetLesson(id) {
 let SESS = null;
 
 /** Aufgabenliste einer Lektion zusammenstellen */
-function buildLessonItems(l) {
-  const items = [];
-  const words = (l.vocab || []).map(id => VOCAB_BY_ID[id]).filter(Boolean);
-  const withIll = shuffle(words.filter(w => w.ill));
-  const noIll = shuffle(words.filter(w => !w.ill));
-  withIll.slice(0, 3).forEach(w => items.push({ type:'image', vid:w.id }));
-  noIll.slice(0, 2).forEach(w => items.push({ type:'word', vid:w.id }));
-  const sents = shuffle((l.sents || []).slice());
-  if (sents[0]) items.push({ type:'build', sid:sents[0] });
-  if (sents[1]) items.push({ type:'listen', sid:sents[1] });
-  if (sents[2] || sents[0]) items.push({ type:'speak', sid:sents[2] || sents[0] });
-  const mixed = shuffle(items);
-  if (l.dec) mixed.push({ type:'decision', did:l.dec });
-  return mixed;
-}
-
 /** Wiederholungs-Session aus fälligen bzw. schwachen Wörtern */
-function buildReviewItems(n = 5) {
-  let ids = dueVocab();
-  if (ids.length < n) {
-    const rest = VOCAB.map(v => v.id)
-      .filter(id => !ids.includes(id))
-      .sort((a, b) => masteryOf(a) - masteryOf(b));
-    ids = ids.concat(rest.slice(0, n - ids.length));
-  }
-  return shuffle(ids).slice(0, n).map(id => ({ type: VOCAB_BY_ID[id].ill ? 'image' : 'word', vid:id, review:true }));
-}
-
 /** Aussprache-Training zu einer Satzgruppe */
 function buildDrillItems(tag, n = 5) {
   return shuffle(SENTENCES.filter(s => s.tag === tag)).slice(0, n).map(s => ({ type:'speak', sid:s.id }));
@@ -2815,6 +3011,7 @@ function exitSession(silent) {
     saveState();
   }
   SESS = null;
+  Speech.stop(true); Speech.onState = null;
   document.body.classList.remove('session');
   hideFeedback(); hideFoot();
   renderAll();
@@ -2874,12 +3071,15 @@ function resolve(ok, opts = {}) {
   if (it.vid) { S.stats.reviewsTotal++; if (ok) S.stats.reviewsRight++; }
   if (ok) {
     t.r++; S.stats.correct++; SESS.right++;
+    SESS.combo = (SESS.combo || 0) + 1;
     let gain = it.type === 'speak' ? XP.speak : (it.review ? XP.review + 5 : XP.correct);
     if (!it.hintUsed && !it.retried) gain += XP.firstTry;
     SESS.xp += gain;
     sfx('correct');
-    if (it.vid) srsUpdate(it.vid, true);
+    if (it.vid) { srsUpdate(it.vid, true); bump('words'); }
+    if ([3, 5, 8, 12, 16].indexOf(SESS.combo) >= 0) { comboBadge(SESS.combo); SESS.xp += 2; }
   } else {
+    SESS.combo = 0;
     SESS.wrong++;
     sfx('wrong');
     if (it.vid) { srsUpdate(it.vid, false); SESS.mistakes.push(it.vid); }
@@ -2916,6 +3116,7 @@ function nextItem() {
 
 /** Aufgabe anzeigen */
 function renderItem() {
+  Speech.stop(true); Speech.onState = null;
   const it = SESS.items[SESS.i];
   it.hintUsed = false;
   paintSessionBar(); paintSessionHearts();
@@ -2923,8 +3124,11 @@ function renderItem() {
   const body = $('#sessBody');
   body.classList.remove('shake');
   const kicker = `${SESS.i + 1} von ${SESS.items.length} · ${esc(SESS.title)}`;
-  ({ image:renderImageGame, word:renderWordGame, build:renderBuildGame,
-     listen:renderListenGame, speak:renderSpeakGame, decision:renderDecisionGame }[it.type])(it, body, kicker);
+  const R = { image:renderImageGame, word:renderWordGame, build:renderBuildGame, listen:renderListenGame,
+              speak:renderSpeakGame, decision:renderDecisionGame, dialog:renderDialogGame, choice:renderChoiceGame,
+              gender:renderGenderGame, plural:renderPluralGame, cloze:renderClozeGame }[it.type];
+  if (!R) { console.warn('Unbekannter Aufgabentyp:', it.type); return nextItem(); }
+  R(it, body, kicker);
   body.scrollTop = 0; window.scrollTo(0, 0);
 }
 
@@ -2936,49 +3140,6 @@ function shakeBody() {
 /* ==========================================================================
    SPIEL 1 — WORT ZUM BILD
    ========================================================================== */
-function renderImageGame(it, body, kicker) {
-  const v = VOCAB_BY_ID[it.vid];
-  const others = shuffle(VOCAB.filter(x => x.ill && x.id !== v.id)).slice(0, 3);
-  const opts = shuffle([v, ...others]);
-  let sel = null;
-  body.innerHTML = `
-    <div class="q-kicker">${kicker}</div>
-    <h2 class="q-title">Welches Bild passt?</h2>
-    <div class="row mt14" style="gap:10px">
-      <button class="icon-btn" type="button" data-say="${esc(v.art + ' ' + v.w)}" aria-label="Wort anhören">${icon('volume',20)}</button>
-      <div><b style="font-size:20px;letter-spacing:-.02em">${v.art} ${esc(v.w)}</b>
-        ${S.settings.trans ? `<div class="bcs">${esc(v.bcs)}</div>` : ''}</div>
-    </div>
-    <div class="opts grid2" role="group" aria-label="Antwortmöglichkeiten">
-      ${opts.map((o, i) => `<button class="opt card-opt" type="button" data-opt="${o.id}">
-        <span class="illu">${ILLU[o.ill]}</span>
-        <span>${esc(o.w)}</span><span class="mark">${icon('check',15,3.4)}</span></button>`).join('')}
-    </div>`;
-  foot('Prüfen', false);
-  $$('.opt', body).forEach(b => b.onclick = () => {
-    if (SESS.answered) return;
-    sfx('tap');
-    $$('.opt', body).forEach(x => x.classList.remove('sel'));
-    b.classList.add('sel'); sel = b.dataset.opt; enableFoot(true);
-  });
-  SESS.answered = false;
-  SESS.check = () => {
-    const ok = sel === v.id;
-    $$('.opt', body).forEach(b => {
-      if (b.dataset.opt === v.id) b.classList.add('ok');
-      else if (b.dataset.opt === sel) { b.classList.add('no'); b.querySelector('.mark').innerHTML = icon('x',15,3.4); }
-      b.disabled = true;
-    });
-    if (!ok) shakeBody();
-    resolve(ok, {
-      title: ok ? feedbackPraise() : `Richtig ist: ${v.art} ${v.w}`,
-      text: `<b>${esc(v.ex)}</b>${S.settings.trans ? `<br><span class="bcs">${esc(v.exb)}</span>` : ''}`,
-      note: ok ? '' : `Merke: <b>${v.art} ${esc(v.w)}</b> – ${esc(v.bcs)}. Das Wort kommt gleich noch einmal.`
-    });
-    if (ok) speak(v.art + ' ' + v.w);
-  };
-}
-
 /* ==========================================================================
    Variante — Übersetzung zuordnen (für Wörter ohne Illustration)
    ========================================================================== */
@@ -3132,9 +3293,8 @@ function renderListenGame(it, body, kicker) {
 
   const play = (rate) => {
     const w = $('#lWave'); w.classList.add('playing');
-    const u = speak(s.de, rate);
-    if (u) u.onend = () => w.classList.remove('playing');
-    else setTimeout(() => w.classList.remove('playing'), 1600);
+    Speech.say(s.de, { rate, role:'pflege', onEnd: () => w.classList.remove('playing') });
+    setTimeout(() => { if (Speech.state !== 'playing') w.classList.remove('playing'); }, 2600);
   };
   $('#lPlay').onclick = () => play(0.95);
   $('#lSlow').onclick = () => play(0.55);
@@ -3251,25 +3411,43 @@ function renderSpeakGame(it, body, kicker) {
   };
 }
 
-/** Ausspracheergebnis auswerten */
+/** Auswertung der Aussprache.
+    Bewusst ohne Prozentwert: gemessen wird, ob die Spracherkennung den Satz
+    versteht. Das ist keine phonetische Analyse – und wird auch so benannt. */
 function scoreSpeech(s, heard, t0) {
   const want = normWords(s.de), got = normWords(heard);
-  const good = want.filter(w => got.includes(w));
+  const hit  = want.filter(w => got.includes(w));
   const miss = want.filter(w => !got.includes(w));
-  const score = Math.round(good.length / want.length * 100);
-  S.stats.speakCount++; S.stats.speakSec += Math.min(60, Math.round((Date.now() - t0) / 1000));
-  const words = s.de.split(' ').map((w, i) => {
-    const ok = got.includes(normWords(w)[0] || '');
-    return `<span class="${ok ? 'g' : 'm'}">${esc(w)}</span>`;
-  }).join('');
-  resolve(score >= 60, {
-    title: score >= 85 ? 'Sehr gute Aussprache!' : score >= 60 ? 'Gut verständlich' : 'Noch einmal üben',
-    text: `<div class="between"><span>Erkannt: <b>${esc(heard)}</b></span>
-        <span class="score-big" style="font-size:30px;color:${score>=60?'var(--green-dark)':'var(--coral-dark)'}">${score}%</span></div>
+  const key  = s.de.split(' ').filter(w => w.length > 6 && /^[A-ZÄÖÜ]/.test(w));
+  const keyMiss = key.filter(w => !got.includes(normWords(w)[0] || ''));
+  const share = hit.length / Math.max(1, want.length);
+  const lvl = (share >= .85 && !keyMiss.length) ? 2 : share >= .5 ? 1 : 0;
+  const V = [
+    { t:'Noch nicht erkannt',   c:'var(--coral-dark)',  s:'Die Spracherkennung konnte den Satz nicht zuordnen.' },
+    { t:'Teilweise verstanden', c:'var(--yellow-dark)', s:'Der Kern ist angekommen, einzelne Wörter fehlten.' },
+    { t:'Gut verständlich',     c:'var(--green-dark)',  s:'Alle Wörter wurden erkannt.' }
+  ][lvl];
+  S.stats.speakCount++; S.stats.speakSec += Math.min(60, Math.round((Date.now() - t0) / 1000)); bump('speak');
+  const words = s.de.split(' ').map(w =>
+    `<span class="${got.includes(normWords(w)[0] || '') ? 'g' : 'm'}">${esc(w)}</span>`).join('');
+  resolve(lvl >= 1, {
+    title: V.t,
+    text: `<b style="color:${V.c}">${V.s}</b>
+      <div class="sub" style="margin-top:8px;font-size:13px">Erkannt: <b style="color:var(--navy)">${esc(heard)}</b></div>
       <div class="diff">${words}</div>`,
-    note: miss.length
-      ? `Noch üben: <b>${esc(miss.join(', '))}</b>. Tipp: langsam anhören und Silbe für Silbe nachsprechen.`
-      : 'Alle Wörter wurden erkannt. Achte weiter auf Satzmelodie und Betonung.'
+    note: `${key.length ? `<div class="kv"><span>Fachbegriffe</span><b>${key.map(w =>
+             (keyMiss.includes(w) ? '○ ' : '● ') + esc(w)).join(' · ')}</b></div>` : ''}
+      ${miss.length ? `<div style="margin-top:8px">Noch üben: <b>${esc(miss.join(', '))}</b></div>` : ''}
+      <div class="fb-model">
+        <div class="eyebrow">Modell hören und nachsprechen</div>
+        <div class="row mt6" style="gap:8px">
+          <button class="icon-btn" type="button" data-say="${esc(s.de)}" aria-label="Modell hören">${icon('volume',17)}</button>
+          <button class="icon-btn" type="button" data-say="${esc(s.de)}" data-rate="0.55" aria-label="Langsam hören">${icon('slow',17)}</button>
+          <span class="sub grow" style="font-size:12.5px">Erst normal hören, dann langsam mitsprechen.</span>
+        </div>
+      </div>
+      <div class="fb-flag" style="color:var(--muted)">${icon('alert',15,2.8)}
+        <span>Geprüft wird, ob die Spracherkennung dich versteht – das ist keine vollständige Ausspracheanalyse.</span></div>`
   });
 }
 
@@ -3289,7 +3467,7 @@ function selfRate(s, t0) {
     </div>`;
   $$('[data-self]', fb).forEach(b => b.onclick = () => {
     const v = +b.dataset.self;
-    S.stats.speakCount++; S.stats.speakSec += Math.min(60, Math.round((Date.now() - t0) / 1000));
+    S.stats.speakCount++; S.stats.speakSec += Math.min(60, Math.round((Date.now() - t0) / 1000)); bump('speak');
     SESS.answered = false;
     resolve(v >= 60, {
       title: v >= 90 ? 'Stark!' : v >= 70 ? 'Solide' : 'Weiter üben',
@@ -3372,7 +3550,7 @@ function finishSession() {
     l.best = Math.max(l.best || 0, acc);
     if (perfect) l.perfect = true;
     if (!wasDone) S.stats.lessons++;
-    if (perfect) S.stats.perfect++;
+    if (perfect) { S.stats.perfect++; bump('perfect'); }
   }
   if (SESS.heartReward && S.hearts < MAX_HEARTS) { S.hearts++; saveState(); }
 
@@ -3663,7 +3841,7 @@ function rolePlayReport() {
     <div class="center" style="padding-top:8px">
       <div class="eyebrow">Gesprächsauswertung</div>
       <h2 class="q-title" style="margin-top:6px">${esc(RP.scen.title)}</h2>
-      <div class="score-big" style="color:${score>=75?'var(--green-dark)':score>=55?'var(--yellow-dark)':'var(--coral-dark)'};margin-top:12px">${score}%</div>
+      <div class="score-big" style="color:${score>=75?'var(--green-dark)':score>=55?'var(--yellow-dark)':'var(--coral-dark)'};margin-top:12px;font-size:27px">${skillLabel(score)}</div>
       <p class="sub">${score >= 80 ? 'Sehr professionell geführt.' : score >= 60
         ? 'Gute Grundlage – mit ein paar Formulierungen wird es noch sicherer.'
         : 'Guter Anfang. Übe die Bausteine unten und versuche es noch einmal.'}</p>
@@ -3673,7 +3851,7 @@ function rolePlayReport() {
       <div class="eyebrow">Bewertung</div>
       ${Object.entries(m).map(([k, v]) => `<div class="metric">
         <span class="mlabel">${labels[k]}</span>${barSVG(v/100, v >= 70 ? '' : 'yellow')}
-        <span class="mval">${v}%</span></div>`).join('')}
+        <span class="mval">${skillLabel(v)}</span></div>`).join('')}
     </div>
 
     <div class="card mt14">
@@ -3730,7 +3908,7 @@ function rolePlayReport() {
 document.addEventListener('click', (e) => {
   const el = e.target.closest('[data-tab],[data-goto],[data-node],[data-start],[data-review],[data-say],[data-sheet],' +
     '[data-badge],[data-fav],[data-vcat],[data-vmode],[data-stab],[data-scen],[data-drill],[data-practice],' +
-    '[data-goal],[data-srate],[data-toggle],[data-export],[data-confirm-reset],[data-save-profile],[data-close],#sessAction');
+    '[data-goal],[data-srate],[data-toggle],[data-export],[data-confirm-reset],[data-save-profile],[data-close],[data-feature],[data-onboard],[data-game],[data-appear],#sessAction');
   if (!el) {
     // Klick neben das Sheet schließt es
     if (e.target.id === 'backdrop') closeSheet();
@@ -3757,6 +3935,10 @@ document.addEventListener('click', (e) => {
     return;
   }
   if (d.start) { sfx('tap'); startLesson(d.start); return; }
+  if (d.feature) { sfx('tap'); startFeature(); return; }
+  if (d.onboard) { sfx('tap'); startOnboarding(true); return; }
+  if (d.appear)  { sfx('tap'); cycleTheme(); return; }
+  if (d.game)    { sfx('tap'); if (d.game === 'blitz') startBlitz(); else startMatch(5); return; }
 
   if (d.review) {
     closeSheet();
@@ -3771,7 +3953,7 @@ document.addEventListener('click', (e) => {
 
   if (d.sheet) {
     sfx('tap');
-    ({ hearts:sheetHearts, league:sheetLeague, streak:sheetStreak,
+    ({ hearts:sheetHearts, league:sheetLeague, streak:sheetStreak, voices:sheetVoices,
        'profile-edit':sheetProfileEdit, reset:sheetReset }[d.sheet] || (() => {}))();
     return;
   }
@@ -3847,7 +4029,11 @@ function sheetExit() {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     if ($('#backdrop').classList.contains('show')) { closeSheet(); return; }
-    if (document.body.classList.contains('session')) { RP ? (RP = null, document.body.classList.remove('session'), go('speak')) : sheetExit(); }
+    if (document.body.classList.contains('session')) {
+      if (BLITZ || MATCH) endGameMode();
+      else if (RP) { RP = null; document.body.classList.remove('session'); go('speak'); }
+      else sheetExit();
+    }
     return;
   }
   if (!document.body.classList.contains('session')) return;
@@ -3869,6 +4055,8 @@ document.addEventListener('keydown', (e) => {
    ========================================================================== */
 function init() {
   loadState();
+  applyTheme();
+  Speech.init();
   regenHearts();
 
   // Tageswechsel behandeln: Tagesziel zurücksetzen, Serie prüfen
@@ -3885,14 +4073,25 @@ function init() {
   Object.keys(S.week).forEach(k => { if (daysDiff(k, today) > 14) delete S.week[k]; });
   saveState();
 
+  today(); checkQuests();
+  try {
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if ((S.settings.theme || 'auto') === 'auto') applyTheme();
+    });
+  } catch (e) {}
   renderNav();
   paintTopbar();
   go('home');
+  if (!S.onboarded) startOnboarding();
 
   $('#stStreak').onclick = sheetStreak;
   $('#stHearts').onclick = sheetHearts;
   $('#stXP').onclick = () => go('progress');
-  $('#sessExit').onclick = () => { if (RP) { RP = null; document.body.classList.remove('session'); go('speak'); } else sheetExit(); };
+  $('#sessExit').onclick = () => {
+    if (BLITZ || MATCH) { endGameMode(); return; }
+    if (RP) { RP = null; document.body.classList.remove('session'); go('speak'); return; }
+    sheetExit();
+  };
 
   // Herzen im Hintergrund nachfüllen
   setInterval(() => {
@@ -3917,6 +4116,1659 @@ function init() {
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
 else init();
+
+/* ==========================================================================
+   22. AUDIO-ENGINE
+   --------------------------------------------------------------------------
+   Provider-Abstraktion. Heute: Web-Speech-API des Geräts ('webspeech').
+   Später: vorproduzierte oder serverseitig erzeugte Dateien ('files') —
+   dazu muss nur Speech.playFile() implementiert und Speech.provider
+   umgestellt werden. Der restliche Code ruft ausschließlich
+   Speech.say() / Speech.play() / Speech.stop() auf.
+   ========================================================================== */
+const Speech = {
+  provider: 'webspeech',
+  voices: [],          // nach Qualität sortierte deutsche Stimmen
+  byRole: {},          // Rolle -> Stimme
+  distinct: 0,         // Anzahl unterscheidbarer Stimmen
+  ready: false,
+  state: 'idle',       // idle | playing | paused | error
+  err: null,           // unsupported | novoice | timeout | <SpeechSynthesisErrorCode>
+  seq: null,           // laufende Warteschlange
+  watchdog: null,
+  onState: null,       // Callback für die Oberfläche
+
+  /* — Verfügbarkeit — */
+  supported() { return 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window; },
+
+  /** Stimmen einlesen. Chrome/Safari liefern die Liste asynchron nach. */
+  init() {
+    if (!this.supported()) { this.err = 'unsupported'; return; }
+    const load = () => {
+      let all = [];
+      try { all = speechSynthesis.getVoices() || []; } catch (e) { all = []; }
+      const de = all.filter(v => /^de/i.test(v.lang || ''));
+      if (!de.length) { if (all.length) this.err = 'novoice'; return; }
+      this.voices = de.slice().sort((a, b) => this.rank(a) - this.rank(b));
+      this.ready = true; this.err = null;
+      this.assignRoles();
+    };
+    load();
+    try { speechSynthesis.addEventListener('voiceschanged', load); }
+    catch (e) { speechSynthesis.onvoiceschanged = load; }
+    setTimeout(load, 350); setTimeout(load, 1400);
+  },
+
+  /** Kleinere Zahl = bessere Stimme. */
+  rank(v) {
+    const n = (v.name || '') + ' ' + (v.voiceURI || '');
+    let s = 0;
+    if (!/de[-_]DE/i.test(v.lang)) s += 24;                       // AT/CH klingt für DACH-Pflege ungewohnt
+    if (/premium|enhanced|neural|natural|siri/i.test(n)) s -= 30; // hochwertige Systemstimmen
+    if (/google/i.test(n)) s -= 18;
+    if (/anna|helena|katja|petra|marlene|vicki|amala|klara|conrad|markus|yannick/i.test(n)) s -= 8;
+    if (/compact|eloquence|espeak|pico|festival|flite/i.test(n)) s += 60;  // Roboterstimmen
+    if (v.localService === false) s -= 5;                         // Netzstimmen meist besser
+    if (v.default) s -= 2;
+    return s;
+  },
+
+  /** Sprecherrollen auf verschiedene Stimmen verteilen. */
+  assignRoles() {
+    let v = this.voices;
+    const pref = (typeof S !== 'undefined' && S.settings) ? S.settings.voiceURI : null;
+    if (pref) { const p = v.find(x => x.voiceURI === pref); if (p) v = [p].concat(v.filter(x => x !== p)); }
+    const fem = v.filter(x => /anna|helena|katja|petra|marlene|vicki|amala|klara|eva|female|weiblich|sandy/i.test(x.name));
+    const mas = v.filter(x => /conrad|markus|yannick|hans|stefan|daniel|male|männlich|christoph|bernd/i.test(x.name));
+    const rest = v.filter(x => !fem.includes(x) && !mas.includes(x));
+    const A = fem[0] || rest[0] || v[0] || null;              // Pflegekraft
+    const B = fem[1] || rest[1] || mas[0] || A;               // Bewohnerin / Patientin
+    const C = mas[0] || rest[2] || fem[2] || A;               // Arzt / Kollege
+    const D = fem[2] || rest[3] || B;                         // Angehörige
+    this.byRole = { pflege:A, du:A, patient:B, bewohner:B, arzt:C, kollege:C,
+                    chef:C, angehoerige:D, interview:C, default:A };
+    this.distinct = new Set(Object.values(this.byRole).filter(Boolean)).size;
+  },
+
+  /** Feinabstimmung pro Rolle, damit Figuren unterscheidbar klingen. */
+  tune: {
+    bewohner:   { rate:-.14, pitch:.94 },   // ältere Bewohnerin: langsamer, tiefer
+    patient:    { rate:-.08, pitch:1.0 },
+    arzt:        { rate:.05, pitch:.95 },
+    kollege:     { rate:.02, pitch:1.0 },
+    angehoerige: { rate:0,   pitch:1.06 },
+    chef:        { rate:0,   pitch:.93 },
+    pflege:      { rate:0,   pitch:1.0 }
+  },
+
+  /** Text in Sätze zerlegen — ohne Lookbehind (iOS-Safari-kompatibel). */
+  split(t) {
+    const out = []; let cur = '';
+    String(t).replace(/[„“”"]/g, '').split(/\s+/).forEach(w => {
+      if (!w) return;
+      cur += (cur ? ' ' : '') + w;
+      if (/[.!?…:]$/.test(w) && cur.length > 12) { out.push(cur); cur = ''; }
+    });
+    if (cur) out.push(cur);
+    return out.length ? out : [String(t)];
+  },
+
+  /** Einzelnen Text sprechen. opt: {role, rate, slow, onEnd} */
+  say(text, opt = {}) {
+    if (!this.supported()) { toast('Dieses Gerät kann keine Sprachausgabe.', 'warn'); return null; }
+    const role = opt.role || 'default';
+    return this.play(this.split(text).map(t => ({ de:t, role })), opt);
+  },
+
+  /** Zeilenfolge (Dialog) abspielen. opt: {rate, slow, loop, from, onLine, onEnd} */
+  play(lines, opt = {}) {
+    if (!this.supported()) return null;
+    this.stop(true);
+    this.seq = { lines, i: opt.from || 0, rate: opt.rate, slow: !!opt.slow, loop: !!opt.loop,
+                 onLine: opt.onLine || null, onEnd: opt.onEnd || null, retried: false };
+    this.state = 'playing'; this.emit();
+    this.step();
+    return this.seq;
+  },
+
+  step() {
+    const s = this.seq;
+    if (!s) return;
+    if (s.i >= s.lines.length) {
+      if (s.loop) s.i = 0;
+      else { this.state = 'idle'; const cb = s.onEnd; this.seq = null; this.emit(); if (cb) cb(); return; }
+    }
+    const line = s.lines[s.i];
+    const u = new SpeechSynthesisUtterance(String(line.de).replace(/[„“”"]/g, ''));
+    const voice = this.byRole[line.role] || this.byRole.default;
+    if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = 'de-DE'; }
+    const tu = this.tune[line.role] || {};
+    const base = s.rate || S.settings.speakRate || .95;
+    u.rate  = clamp((s.slow ? base * .6 : base) + (tu.rate || 0), .5, 1.4);
+    u.pitch = tu.pitch || 1;
+
+    u.onstart = () => {
+      clearTimeout(this.watchdog);
+      if (this.seq !== s) return;
+      this.state = 'playing'; this.emit();
+      if (s.onLine) s.onLine(s.i, 'start');
+    };
+    u.onend = () => {
+      if (this.seq !== s) return;
+      if (s.onLine) s.onLine(s.i, 'end');
+      s.i++;
+      setTimeout(() => { if (this.seq === s) this.step(); }, line.pause || 260);
+    };
+    u.onerror = (e) => {
+      const code = (e && e.error) || 'error';
+      if (code === 'interrupted' || code === 'canceled') return;   // eigenes stop()
+      this.fail(code);
+    };
+
+    this.cur = u;
+    clearTimeout(this.watchdog);
+    // Manche Browser verschlucken speak() lautlos — nach 2 s als Fehler behandeln
+    this.watchdog = setTimeout(() => {
+      if (this.seq === s && !speechSynthesis.speaking && !speechSynthesis.pending) this.fail('timeout');
+    }, 2000);
+    try { speechSynthesis.speak(u); } catch (e) { this.fail('exception'); }
+  },
+
+  /** Fehler: einmal automatisch wiederholen, dann Ersatzweg anbieten. */
+  fail(code) {
+    clearTimeout(this.watchdog);
+    const s = this.seq;
+    this.err = code;
+    if (s && !s.retried) {
+      s.retried = true;
+      try { speechSynthesis.cancel(); } catch (e) {}
+      setTimeout(() => { if (this.seq === s) this.step(); }, 320);
+      return;
+    }
+    this.state = 'error'; this.seq = null; this.emit();
+    toast('Audio nicht abspielbar – der Text bleibt lesbar.', 'warn');
+  },
+
+  pause() {
+    if (!this.seq) return;
+    try { speechSynthesis.pause(); } catch (e) {}
+    this.state = 'paused'; this.emit();
+    // iOS ignoriert pause() gelegentlich: dann harter Stopp mit Merkposition
+    setTimeout(() => {
+      if (this.state === 'paused' && speechSynthesis.speaking && !speechSynthesis.paused) {
+        const s = this.seq;
+        if (!s) return;
+        this.softPause = { lines: s.lines, i: s.i, rate: s.rate, slow: s.slow,
+                           loop: s.loop, onLine: s.onLine, onEnd: s.onEnd };
+        this.stop(true); this.state = 'paused'; this.emit();
+      }
+    }, 260);
+  },
+
+  resume() {
+    if (this.softPause) {
+      const p = this.softPause; this.softPause = null;
+      this.play(p.lines, { from:p.i, rate:p.rate, slow:p.slow, loop:p.loop, onLine:p.onLine, onEnd:p.onEnd });
+      return;
+    }
+    try { speechSynthesis.resume(); } catch (e) {}
+    this.state = 'playing'; this.emit();
+  },
+
+  stop(quiet) {
+    clearTimeout(this.watchdog);
+    this.seq = null; this.softPause = null;
+    try { speechSynthesis.cancel(); } catch (e) {}
+    this.state = 'idle';
+    if (!quiet) this.emit();
+  },
+
+  playing() { return this.state === 'playing'; },
+  emit() { if (typeof this.onState === 'function') this.onState(this.state, this.seq ? this.seq.i : -1); },
+
+  /** Klartext-Diagnose für die Einstellungen. */
+  status() {
+    if (!this.supported()) return { ok:false, txt:'Dieses Gerät bietet keine Sprachausgabe im Browser.' };
+    if (!this.ready)      return { ok:false, txt:'Keine deutsche Stimme gefunden. Bitte im Betriebssystem eine deutsche Stimme installieren.' };
+    const v = this.byRole.default;
+    const weak = /compact|espeak|pico|eloquence/i.test(v ? v.name : '');
+    return {
+      ok: !weak,
+      txt: weak
+        ? 'Die gefundene Stimme klingt maschinell. Für deutlich besseren Klang eine hochwertige deutsche Stimme im System nachladen.'
+        : 'Stimme aktiv: ' + (v ? v.name : '–') + (this.distinct > 1 ? ' · ' + this.distinct + ' Sprecherstimmen' : ' · nur eine Stimme verfügbar'),
+      voice: v, weak
+    };
+  }
+};
+
+/* Rückwärtskompatible Kurzform — wird überall in der App genutzt */
+function speak(text, rate) { return Speech.say(text, { rate }); }
+const speechOK = () => Speech.supported();
+
+/** Hinweistext, wie man bessere Stimmen bekommt (geräteabhängig) */
+function voiceHelpText() {
+  const ua = navigator.userAgent || '';
+  if (/iPhone|iPad|iPod|Macintosh/i.test(ua))
+    return 'iPhone/iPad: Einstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimmen → Deutsch → eine Stimme mit „Premium“ oder „Erweitert“ laden.';
+  if (/Android/i.test(ua))
+    return 'Android: Einstellungen → System → Sprachen → Sprachausgabe → Google Text-in-Sprache → Sprachdaten für Deutsch installieren.';
+  return 'Windows: Einstellungen → Zeit und Sprache → Sprache → Deutsch → Sprachpaket mit Sprachausgabe hinzufügen. In Chrome stehen zusätzlich Online-Stimmen bereit.';
+}
+
+/** Stimmenauswahl und Audio-Diagnose */
+function sheetVoices() {
+  const st = Speech.status();
+  const list = Speech.voices;
+  openSheet(`
+    <h3>Audio und Stimmen</h3>
+    <div class="card-flat mt10" style="border-left:4px solid ${st.ok ? 'var(--green)' : 'var(--yellow-dark)'}">
+      <div class="row" style="align-items:flex-start">
+        <span style="color:${st.ok ? 'var(--green-dark)' : 'var(--yellow-dark)'}">${icon(st.ok ? 'check' : 'alert', 20)}</span>
+        <p class="sub grow">${esc(st.txt)}</p>
+      </div>
+      ${st.ok ? '' : `<p class="sub" style="font-size:12.5px;margin-top:10px">${esc(voiceHelpText())}</p>`}
+    </div>
+    ${list.length ? `
+      <div class="eyebrow" style="margin-top:18px">Stimme für die Pflegekraft</div>
+      <div class="vlist">${list.map((v, i) => `
+        <button class="vrow${(S.settings.voiceURI || '') === v.voiceURI ? ' on' : ''}" type="button" data-voice="${esc(v.voiceURI)}">
+          <span class="grow"><b>${esc(v.name)}</b><span class="sub" style="display:block;font-size:11.5px">${esc(v.lang)}${v.localService === false ? ' · Online' : ' · auf dem Gerät'}</span></span>
+          <span class="vplay" aria-hidden="true">${icon('volume', 17)}</span>
+        </button>`).join('')}
+      </div>
+      <p class="sub" style="font-size:12px;margin-top:12px">Antippen wählt die Stimme aus und spielt einen Beispielsatz.
+      Für Patienten, Ärzte und Kollegen verteilt die App automatisch weitere Stimmen.</p>` : ''}
+    <button class="btn btn-ghost btn-sm mt14" type="button" data-close>Schließen</button>`);
+
+  $$('[data-voice]').forEach(b => b.onclick = () => {
+    const uri = b.dataset.voice;
+    S.settings.voiceURI = uri;
+    const v = Speech.voices.find(x => x.voiceURI === uri);
+    if (v) {
+      Speech.voices = [v].concat(Speech.voices.filter(x => x !== v));
+      Speech.assignRoles();
+    }
+    saveState();
+    $$('[data-voice]').forEach(x => x.classList.toggle('on', x === b));
+    Speech.say('Guten Morgen, Frau Berger. Ich messe jetzt Ihren Blutdruck.', { role:'pflege' });
+  });
+}
+
+/* ==========================================================================
+   23. REFERENZ-LEKTION „Ein Patient hat Schmerzen"
+   --------------------------------------------------------------------------
+   Vollständige Lerneinheit als Qualitätsmaßstab für alle weiteren Lektionen:
+   Dialog mit zwei Stimmen → Hörverstehen → Reaktion wählen → Satzbau →
+   Diktat → Aussprache → Übergabe → Entscheidung.
+   ========================================================================== */
+const DIALOGS = {
+  dlg_schmerzen: {
+    id: 'dlg_schmerzen',
+    title: 'Frau Berger hat Schmerzen',
+    place: 'Pflegeheim · Zimmer 214 · Frühdienst',
+    goal: 'Schmerzen erfragen, einschätzen und an die Fachkraft weitergeben',
+    speakers: {
+      pflege:   { name: 'Du · Pflegehelferin', color: 'var(--green)' },
+      bewohner: { name: 'Frau Berger · 82', color: '#7C6BE8' }
+    },
+    lines: [
+      { r:'pflege',   de:'Guten Morgen, Frau Berger. Wie haben Sie geschlafen?',
+                      bcs:'Dobro jutro, gospođo Berger. Kako ste spavali?' },
+      { r:'bewohner', de:'Nicht gut. Ich habe die ganze Nacht Schmerzen gehabt.',
+                      bcs:'Nisam dobro. Cijelu noć sam imala bolove.' },
+      { r:'pflege',   de:'Das tut mir leid. Können Sie mir zeigen, wo es weh tut?',
+                      bcs:'Žao mi je. Možete li mi pokazati gdje boli?' },
+      { r:'bewohner', de:'Hier, im rechten Bein. Vor allem im Knie.',
+                      bcs:'Ovdje, u desnoj nozi. Naročito u kolenu.' },
+      { r:'pflege',   de:'Seit wann haben Sie diese Schmerzen?',
+                      bcs:'Od kada imate te bolove?' },
+      { r:'bewohner', de:'Seit gestern Abend. Es ist immer schlimmer geworden.',
+                      bcs:'Od sinoć. Bilo je sve gore.' },
+      { r:'pflege',   de:'Wie stark sind die Schmerzen auf einer Skala von null bis zehn?',
+                      bcs:'Koliko su jaki bolovi na skali od nula do deset?' },
+      { r:'bewohner', de:'Ich glaube, sieben. Wenn ich das Bein bewege, ist es noch schlimmer.',
+                      bcs:'Mislim, sedam. Kad pomjerim nogu, još je gore.' },
+      { r:'pflege',   de:'Ist der Schmerz die ganze Zeit da oder kommt er in Wellen?',
+                      bcs:'Je li bol stalno prisutan ili dolazi na mahove?' },
+      { r:'bewohner', de:'Er kommt in Wellen. Und das Knie ist warm und dick.',
+                      bcs:'Dolazi na mahove. I koleno je toplo i naduto.' },
+      { r:'pflege',   de:'Danke, das ist wichtig. Ich informiere sofort die Pflegefachkraft. Bleiben Sie bitte liegen.',
+                      bcs:'Hvala, to je važno. Odmah obavještavam medicinsku sestru. Molim Vas ostanite ležati.' },
+      { r:'bewohner', de:'Danke, dass Sie mir zuhören.',
+                      bcs:'Hvala što me slušate.' }
+    ]
+  }
+};
+
+/* Zusätzliche Modellsätze der Referenz-Lektion */
+[
+  { id:'fx1', tag:'patient', de:'Können Sie mir zeigen, wo es weh tut?',
+    bcs:'Možete li mi pokazati gdje boli?',
+    gram:'Höfliche Frage mit „Können Sie …?“ – das Verb steht am Ende.' },
+  { id:'fx2', tag:'patient', de:'Wie stark sind die Schmerzen auf einer Skala von null bis zehn?',
+    bcs:'Koliko su jaki bolovi na skali od nula do deset?',
+    gram:'Feste Wendung im Pflegealltag: „auf einer Skala von null bis zehn“.' },
+  { id:'fx3', tag:'kollege', de:'Frau Berger hat seit gestern Abend Schmerzen im rechten Knie, Stärke sieben von zehn.',
+    bcs:'Gospođa Berger od sinoć ima bolove u desnom kolenu, jačina sedam od deset.',
+    gram:'Übergabe: Wer – seit wann – wo – wie stark. Zeitangabe vor dem Ort.' }
+].forEach(s => { if (!SENT_BY_ID[s.id]) { SENTENCES.push(s); SENT_BY_ID[s.id] = s; } });
+
+const FEATURE = {
+  id: 'fx_schmerzen',
+  title: 'Ein Patient hat Schmerzen',
+  sub: 'Schmerzen erfragen, einschätzen, weitergeben',
+  level: 'A2 – B1',
+  min: 12,
+  dlg: 'dlg_schmerzen',
+  skills: ['Hören', 'Sprechen', 'Patientenkommunikation', 'Übergabe']
+};
+
+/** Aufgabenfolge der Referenz-Lektion */
+function buildFeatureItems() {
+  const d = DIALOGS.dlg_schmerzen;
+  return [
+    { type:'dialog', did:'dlg_schmerzen' },
+
+    { type:'choice', kind:'Hörverstehen', q:'Wo hat Frau Berger Schmerzen?',
+      opts:[{t:'Im rechten Knie', ok:1}, {t:'Im linken Knie'}, {t:'Im Rücken'}, {t:'Im Bauch'}],
+      audio:3,
+      why:'Frau Berger zeigt auf das rechte Bein und nennt vor allem das Knie. Seite und Körperteil musst du genau weitergeben – „das Bein“ allein reicht nicht.' },
+
+    { type:'choice', kind:'Hörverstehen', q:'Seit wann bestehen die Schmerzen?',
+      opts:[{t:'Seit gestern Abend', ok:1}, {t:'Seit heute Morgen'}, {t:'Seit einer Woche'}, {t:'Seit dem Frühstück'}],
+      audio:5,
+      why:'„Seit gestern Abend“ – der Zeitpunkt gehört in jede Übergabe, weil er zeigt, ob sich etwas verschlechtert.' },
+
+    { type:'choice', kind:'Reaktion wählen',
+      sit:'Frau Berger sagt: „Es tut so weh.“ Sie wirkt angespannt.',
+      q:'Was antwortest du?',
+      opts:[
+        { t:'„Das tut mir leid. Können Sie mir zeigen, wo es weh tut?“', ok:1 },
+        { t:'„Das ist normal in Ihrem Alter.“' },
+        { t:'„Nehmen Sie einfach eine Tablette.“', unsafe:1 },
+        { t:'„Ich habe jetzt leider keine Zeit.“' }],
+      why:'Erst das Gefühl anerkennen, dann gezielt nachfragen. So fühlt sich die Bewohnerin ernst genommen und du bekommst die Information, die die Fachkraft braucht.',
+      safe:'Medikamente gibst du nie auf eigene Entscheidung – auch keine freiverkäuflichen. Das ist Aufgabe der Pflegefachkraft nach ärztlicher Anordnung.',
+      better:'Das tut mir leid. Können Sie mir zeigen, wo es weh tut?',
+      simple:'Wo tut es weh?' },
+
+    { type:'choice', kind:'Ton wählen',
+      q:'Wie fragst du nach der Schmerzstärke?',
+      opts:[
+        { t:'„Wie stark sind die Schmerzen auf einer Skala von null bis zehn?“', ok:1 },
+        { t:'„Tut es sehr weh oder nur ein bisschen?“' },
+        { t:'„Ist es schlimm?“' },
+        { t:'„Sie haben doch keine starken Schmerzen, oder?“' }],
+      why:'Die Skala von null bis zehn ist im deutschen Pflegealltag Standard. Sie macht Schmerz vergleichbar und dokumentierbar – „ein bisschen“ kann niemand einschätzen.',
+      better:'Wie stark sind die Schmerzen auf einer Skala von null bis zehn? Null ist kein Schmerz, zehn ist der stärkste Schmerz.',
+      simple:'Von null bis zehn: Wie stark ist der Schmerz?' },
+
+    { type:'choice', kind:'Beobachtung',
+      q:'Frau Berger sagt, das Knie ist warm und dick. Was machst du damit?',
+      opts:[
+        { t:'Ich gebe die Beobachtung sofort an die Pflegefachkraft weiter.', ok:1 },
+        { t:'Ich kühle das Knie selbst mit Eis.', unsafe:1 },
+        { t:'Ich schreibe es später auf, wenn Zeit ist.' },
+        { t:'Das ist bei älteren Menschen normal.' }],
+      why:'Wärme, Schwellung und Rötung sind Beobachtungen, die du nicht bewertest, sondern zeitnah meldest. Deine Aufgabe ist beobachten, beschreiben, weitergeben.',
+      safe:'Eigene Maßnahmen wie Kühlen, Wickel oder Bewegen können schaden, solange die Ursache unklar ist.',
+      better:'Ich habe eine Beobachtung: Das rechte Knie ist warm und geschwollen.',
+      simple:'Ich melde es sofort.' },
+
+    { type:'build', sid:'fx1' },
+    { type:'listen', sid:'fx2' },
+
+    { type:'choice', kind:'Übergabe',
+      sit:'Du gehst zur Pflegefachkraft. Sie hat wenig Zeit.',
+      q:'Welche Übergabe ist vollständig?',
+      opts:[
+        { t:'„Frau Berger, Zimmer 214: Schmerzen im rechten Knie seit gestern Abend, Stärke sieben von zehn, wellenförmig. Das Knie ist warm und geschwollen. Sie liegt im Bett, ich habe sie nicht mobilisiert.“', ok:1 },
+        { t:'„Frau Berger hat Schmerzen.“' },
+        { t:'„Die Frau aus 214 klagt schon die ganze Nacht, ich glaube, es ist Arthrose.“' },
+        { t:'„Bei Frau Berger ist irgendwas mit dem Bein, schauen Sie mal.“' }],
+      why:'Vollständig heißt: Wer, wo, seit wann, wie stark, welcher Verlauf, welche Beobachtung, was hast du getan oder bewusst nicht getan. Eine Diagnose stellst du nicht – „ich glaube, es ist Arthrose“ gehört nicht in deine Übergabe.',
+      better:'Frau Berger, Zimmer 214: Schmerzen im rechten Knie seit gestern Abend, Stärke sieben von zehn.',
+      simple:'Frau Berger, Zimmer 214, hat starke Schmerzen im rechten Knie.' },
+
+    { type:'speak', sid:'fx3' },
+    { type:'decision', did:'d_schmerz' }
+  ];
+}
+
+function startFeature() {
+  startSession({ type:'lesson', title:FEATURE.title, lessonId:FEATURE.id, items:buildFeatureItems() });
+}
+
+/* ==========================================================================
+   24. DIALOG-PLAYER
+   ========================================================================== */
+function renderDialogGame(it, body, kicker) {
+  const d = DIALOGS[it.did];
+  let showTrans = S.settings.trans, slow = false, active = -1;
+
+  body.innerHTML = `
+    <div class="q-kicker">${kicker}</div>
+    <h2 class="q-title">${esc(d.title)}</h2>
+    <p class="q-sub">${esc(d.place)}</p>
+    <div class="card mt14" style="background:var(--mint);border-color:var(--mint-2)">
+      <div class="eyebrow" style="color:var(--green-dark)">Ziel</div>
+      <p class="sub mt6" style="color:var(--green-deep);font-weight:600">${esc(d.goal)}</p>
+    </div>
+
+    <div class="audio-banner" id="dlErr" hidden>
+      <span>${icon('alert',18)}</span>
+      <div><b>Audio nicht verfügbar</b><div class="sub" style="font-size:12.5px">Du kannst den Dialog trotzdem lesen und die Übungen normal fortsetzen.</div></div>
+    </div>
+
+    <div class="dl-ctl mt14">
+      <button class="btn" type="button" id="dlPlay">${icon('play',19,2.6)} <span id="dlPlayTxt">Dialog abspielen</span></button>
+      <div class="row wrap mt10" style="gap:8px">
+        <button class="chip" type="button" id="dlSlow" aria-pressed="false">${icon('slow',15,2.6)} Langsam</button>
+        <button class="chip" type="button" id="dlRestart">${icon('repeat',15,2.6)} Von vorn</button>
+        <button class="chip${showTrans ? ' on' : ''}" type="button" id="dlTrans" aria-pressed="${showTrans}">${icon('globe',15,2.6)} Übersetzung</button>
+      </div>
+    </div>
+
+    <div class="dl-list mt14" id="dlList" role="list">
+      ${d.lines.map((l, i) => `
+        <button class="dl-line" type="button" role="listitem" data-line="${i}" aria-label="Satz ${i+1} anhören">
+          <span class="dl-sp" style="background:${d.speakers[l.r].color}">${esc(d.speakers[l.r].name.split(' ')[0])}</span>
+          <span class="grow">
+            <span class="dl-de">${esc(l.de)}</span>
+            <span class="dl-bcs"${showTrans ? '' : ' hidden'}>${esc(l.bcs)}</span>
+          </span>
+          <span class="dl-play">${icon('volume',16)}</span>
+        </button>`).join('')}
+    </div>
+    <p class="sub" style="font-size:12.5px;margin-top:12px">Tippe eine Zeile an, um nur diesen Satz zu hören.
+    Zwei Sprecherinnen werden – wenn das Gerät mehrere deutsche Stimmen hat – mit unterschiedlichen Stimmen gelesen.</p>`;
+
+  const rows = $$('.dl-line', body);
+  const mark = (i) => {
+    active = i;
+    rows.forEach((r, k) => r.classList.toggle('on', k === i));
+    if (i >= 0 && rows[i]) rows[i].scrollIntoView({ behavior:'smooth', block:'center' });
+  };
+  const setPlayBtn = (playing) => {
+    const b = $('#dlPlay'); if (!b) return;
+    b.innerHTML = icon(playing ? 'pause' : 'play', 19, 2.6) +
+      ' <span id="dlPlayTxt">' + (playing ? 'Pause' : 'Dialog abspielen') + '</span>';
+  };
+
+  if (!Speech.supported() || !Speech.ready) $('#dlErr').hidden = false;
+  Speech.onState = (state) => {
+    if (!$('#dlPlay')) { Speech.onState = null; return; }
+    setPlayBtn(state === 'playing');
+    if (state === 'error') $('#dlErr').hidden = false;
+    if (state === 'idle') mark(-1);
+  };
+
+  const lines = () => d.lines.map(l => ({ de:l.de, role:l.r, pause: l.r === 'bewohner' ? 380 : 300 }));
+
+  const playAll = (from) => Speech.play(lines(), {
+    from: from || 0, slow,
+    onLine: (i, ev) => { if (ev === 'start') mark(i); },
+    onEnd: () => { mark(-1); enableFoot(true); }
+  });
+
+  $('#dlPlay').onclick = () => {
+    if (Speech.state === 'playing') { Speech.pause(); return; }
+    if (Speech.state === 'paused')  { Speech.resume(); return; }
+    playAll(0);
+  };
+  $('#dlRestart').onclick = () => playAll(0);
+  $('#dlSlow').onclick = () => {
+    slow = !slow;
+    $('#dlSlow').classList.toggle('on', slow);
+    $('#dlSlow').setAttribute('aria-pressed', String(slow));
+    if (Speech.state !== 'idle') playAll(Math.max(0, active));
+  };
+  $('#dlTrans').onclick = () => {
+    showTrans = !showTrans;
+    $('#dlTrans').classList.toggle('on', showTrans);
+    $('#dlTrans').setAttribute('aria-pressed', String(showTrans));
+    $$('.dl-bcs', body).forEach(e => e.hidden = !showTrans);
+  };
+  rows.forEach(r => r.onclick = () => {
+    const i = +r.dataset.line;
+    Speech.play([{ de:d.lines[i].de, role:d.lines[i].r }], { slow, onLine:() => mark(i), onEnd:() => mark(-1) });
+  });
+
+  foot('Weiter zu den Übungen', true);
+  SESS.answered = false;
+  SESS.check = () => {
+    SESS.answered = true;
+    Speech.stop(true); Speech.onState = null;
+    SESS.xp += XP.review;
+    bump('dialog');
+    nextItem();
+  };
+}
+
+/* ==========================================================================
+   25. AUFGABENTYP „Auswahl" — Hörverstehen, Reaktion, Ton, Übergabe
+   ========================================================================== */
+function renderChoiceGame(it, body, kicker) {
+  const opts = shuffle(it.opts.map((o, i) => ({ ...o, i })));
+  const correct = it.opts.findIndex(o => o.ok);
+  let sel = null;
+
+  body.innerHTML = `
+    <div class="q-kicker">${kicker}${it.kind ? ' · ' + esc(it.kind) : ''}</div>
+    ${it.sit ? `<div class="card mt10" style="background:var(--mint);border-color:var(--mint-2)">
+      <p class="sub" style="color:var(--green-deep);font-weight:600">${esc(it.sit)}</p></div>` : ''}
+    <h2 class="q-title" style="margin-top:14px">${esc(it.q)}</h2>
+    ${it.audio !== undefined ? `<button class="chip mt10" type="button" id="chAudio">${icon('volume',15,2.6)} Stelle im Dialog anhören</button>` : ''}
+    <div class="opts" role="group" aria-label="Antwortmöglichkeiten">
+      ${opts.map((o, i) => `<button class="opt" type="button" data-opt="${o.i}">
+        <kbd>${i+1}</kbd><span>${esc(o.t)}</span><span class="mark">${icon('check',15,3.4)}</span></button>`).join('')}
+    </div>`;
+
+  if (it.audio !== undefined) {
+    const dl = DIALOGS.dlg_schmerzen.lines[it.audio];
+    $('#chAudio').onclick = () => Speech.play([{ de:dl.de, role:dl.r }], { slow:true });
+  }
+
+  $$('.opt', body).forEach(b => b.onclick = () => {
+    if (SESS.answered) return;
+    sfx('tap');
+    $$('.opt', body).forEach(x => x.classList.remove('sel'));
+    b.classList.add('sel'); sel = +b.dataset.opt; enableFoot(true);
+  });
+
+  foot('Prüfen', false);
+  SESS.answered = false;
+  SESS.check = () => {
+    const ok = sel === correct;
+    const chosen = it.opts[sel] || {};
+    $$('.opt', body).forEach(b => {
+      const i = +b.dataset.opt;
+      if (i === correct) b.classList.add('ok');
+      else if (i === sel) { b.classList.add('no'); b.querySelector('.mark').innerHTML = icon('x',15,3.4); }
+      b.disabled = true;
+    });
+    if (!ok) shakeBody();
+
+    const parts = [];
+    parts.push(esc(it.why));
+    if (!ok && chosen.unsafe && it.safe) parts.push(`<div class="fb-flag">${icon('alert',15,2.8)} <span>${esc(it.safe)}</span></div>`);
+    else if (it.safe && ok) parts.push(`<div class="fb-flag">${icon('alert',15,2.8)} <span>${esc(it.safe)}</span></div>`);
+    if (it.better) parts.push(`<div class="fb-model">
+        <div class="eyebrow">So klingt es professionell</div>
+        <div class="row" style="gap:8px;align-items:flex-start">
+          <button class="icon-btn" type="button" data-say="${esc(it.better)}" aria-label="Vorlesen">${icon('volume',17)}</button>
+          <b class="grow" style="font-size:14.5px">${esc(it.better)}</b>
+        </div>
+        ${it.simple ? `<div class="row mt10" style="gap:8px;align-items:flex-start">
+          <button class="icon-btn" type="button" data-say="${esc(it.simple)}" aria-label="Vorlesen">${icon('volume',17)}</button>
+          <span class="sub grow">Einfacher: <b style="color:var(--navy)">${esc(it.simple)}</b></span></div>` : ''}
+      </div>`);
+
+    resolve(ok, {
+      title: ok ? 'Richtig entschieden' : 'Besser wäre gewesen',
+      text: ok ? '' : `<b>${esc(it.opts[correct].t)}</b>`,
+      note: parts.join('')
+    });
+  };
+}
+
+/** Fortschritt in Worten statt in Scheinprozenten */
+function skillLabel(v) {
+  return v >= 88 ? 'Souverän' : v >= 72 ? 'Sicher' : v >= 55 ? 'Grundlage'
+       : v >= 38 ? 'Im Aufbau' : 'Anfang';
+}
+const SKILL_SCALE = [
+  ['Anfang',    'Einzelne Wörter, noch keine sicheren Sätze.'],
+  ['Im Aufbau', 'Sätze entstehen, mit Fehlern und Pausen.'],
+  ['Grundlage', 'Verständlich in bekannten Situationen.'],
+  ['Sicher',    'Zuverlässig im Alltag, auch bei Rückfragen.'],
+  ['Souverän',  'Auch unter Druck klar und professionell.']
+];
+
+/* ==========================================================================
+   26. ONBOARDING UND TAGESPLAN
+   --------------------------------------------------------------------------
+   Beim ersten Start beantwortet die Nutzerin sieben kurze Fragen. Daraus
+   entstehen Name, Tagesziel und ein Tagesplan, der auf der Startseite steht.
+   Alle Angaben sind später im Profil änderbar.
+   ========================================================================== */
+const LANGS = [
+  { id:'bs', label:'Bosanski' }, { id:'hr', label:'Hrvatski' },
+  { id:'sr', label:'Srpski' },   { id:'me', label:'Crnogorski' },
+  { id:'de', label:'Nur Deutsch, ohne Übersetzung' }
+];
+
+const ENVS = [
+  { id:'heim',  label:'Pflegeheim',        sub:'Bewohnerinnen und Bewohner, feste Abläufe' },
+  { id:'kh',    label:'Krankenhaus',        sub:'Station, Visite, häufige Übergaben' },
+  { id:'amb',   label:'Ambulante Pflege',   sub:'Hausbesuche, allein unterwegs' },
+  { id:'reha',  label:'Rehabilitation',     sub:'Mobilisation und Training' },
+  { id:'offen', label:'Noch nicht sicher',  sub:'Ich entscheide später' }
+];
+
+const LEVELS_CEFR = [
+  { id:'a1', label:'A1 – Anfang',      sub:'Einzelne Wörter und einfache Sätze' },
+  { id:'a2', label:'A2 – Grundlagen',  sub:'Alltagssätze, langsames Sprechen' },
+  { id:'b1', label:'B1 – Mittelstufe', sub:'Ich kann Gespräche führen' },
+  { id:'b2', label:'B2 oder höher',    sub:'Ich arbeite an Feinheiten' }
+];
+
+const GOALS = {
+  interview:  { label:'Vorstellungsgespräch',      focus:'Formell sprechen und sich vorstellen',
+                lesson:'l1',  scen:'rp_arzt',      tag:'kollege' },
+  firstday:   { label:'Erster Arbeitstag',          focus:'Ankommen, fragen, nachfragen',
+                lesson:'l1',  scen:'rp_aufstehen',  tag:'kollege' },
+  patient:    { label:'Gespräche mit Patienten',    focus:'Fragen stellen und wirklich zuhören',
+                lesson:'FX',  scen:'rp_schmerzen',  tag:'patient' },
+  wortschatz: { label:'Fachwortschatz',             focus:'Wörter aus dem Pflegealltag',
+                lesson:'l2',  scen:'rp_medi',       tag:'patient' },
+  uebergabe:  { label:'Übergabe an Kollegen',       focus:'Strukturiert und knapp berichten',
+                lesson:'l10', scen:'rp_uebergabe',  tag:'kollege' },
+  aussprache: { label:'Aussprache',                 focus:'Deutlich und verständlich sprechen',
+                lesson:'FX',  scen:'rp_verwirrt',   tag:'patient' }
+};
+
+const MINUTES = [
+  { id:5,  label:'5 Minuten',  sub:'Vor der Schicht', goal:10 },
+  { id:10, label:'10 Minuten', sub:'Kurz und regelmäßig', goal:20 },
+  { id:20, label:'20 Minuten', sub:'Solides Tempo', goal:30 },
+  { id:30, label:'30 Minuten', sub:'Ich habe ein Ziel vor Augen', goal:50 }
+];
+
+const OB_STEPS = ['name', 'lang', 'exp', 'env', 'level', 'goal', 'minutes', 'plan'];
+let OB = null;
+
+/** Onboarding öffnen. edit=true übernimmt die bisherigen Angaben. */
+function startOnboarding(edit) {
+  OB = { i: 0, edit: !!edit, data: {
+    name: S.user.name || '', lang: S.user.lang || 'bs', exp: S.user.exp || '',
+    env: S.user.env || '', level: S.user.level || '', goal: S.user.goal2 || '',
+    minutes: S.user.minutes || 10
+  }};
+  let el = $('#ob');
+  if (!el) {
+    el = document.createElement('div');
+    el.className = 'ob'; el.id = 'ob';
+    el.innerHTML = `
+      <div class="ob-in">
+        <div class="ob-top">
+          <button class="ob-icon" type="button" id="obBack" aria-label="Zurück">${icon('left',20,2.6)}</button>
+          <div class="ob-dots" id="obDots" aria-hidden="true"></div>
+          <button class="ob-txt" type="button" id="obSkip">Überspringen</button>
+        </div>
+        <div class="ob-body" id="obBody"></div>
+        <div class="ob-foot"><button class="btn" type="button" id="obNext">Weiter</button></div>
+      </div>`;
+    document.body.appendChild(el);
+    $('#obBack').onclick = () => obGo(-1);
+    $('#obNext').onclick = () => obGo(1);
+    $('#obSkip').onclick = obSkip;
+  }
+  el.classList.add('show');
+  document.body.classList.add('onboarding');
+  obRender();
+}
+
+function obSkip() {
+  if (OB && OB.edit) { obClose(); return; }
+  openSheet(`<div class="center">
+    <h3>Ohne Angaben starten?</h3>
+    <p class="c">Ohne Name und Ziel kann die App keinen persönlichen Plan erstellen.
+    Du kannst alles später im Profil nachtragen.</p>
+    <button class="btn mt14" type="button" id="obSkipYes">Trotzdem starten</button>
+    <button class="btn btn-outline-green btn-sm mt10" type="button" id="obDemo">Demo mit Beispieldaten ansehen</button>
+    <button class="btn btn-ghost btn-sm mt10" type="button" data-close>Zurück zu den Fragen</button></div>`);
+  $('#obSkipYes').onclick = () => {
+    closeSheet();
+    S.user.name = 'Kollegin'; S.onboarded = true;
+    saveState(); obClose(); renderAll();
+  };
+  $('#obDemo').onclick = () => {
+    closeSheet();
+    S = demoState(); saveState(); obClose(); renderAll();
+    toast('Demo-Fortschritt geladen. Im Profil kannst du zurücksetzen.', 'win');
+  };
+}
+
+function obClose() {
+  const el = $('#ob');
+  if (el) el.classList.remove('show');
+  document.body.classList.remove('onboarding');
+  OB = null;
+}
+
+function obGo(dir) {
+  const step = OB_STEPS[OB.i];
+  if (dir > 0) {
+    if (step === 'name') {
+      const v = ($('#obName') ? $('#obName').value : '').trim();
+      OB.data.name = v.slice(0, 24);
+    }
+    if (step === 'plan') { finishOnboarding(); return; }
+  }
+  OB.i = clamp(OB.i + dir, 0, OB_STEPS.length - 1);
+  sfx('tap');
+  obRender();
+}
+
+function obRender() {
+  const step = OB_STEPS[OB.i];
+  const body = $('#obBody');
+  $('#obDots').innerHTML = OB_STEPS.map((_, i) =>
+    `<i class="${i === OB.i ? 'on' : i < OB.i ? 'done' : ''}"></i>`).join('');
+  $('#obBack').style.visibility = OB.i === 0 ? 'hidden' : 'visible';
+  $('#obSkip').style.visibility = step === 'plan' ? 'hidden' : 'visible';
+  $('#obNext').textContent = step === 'plan' ? 'Los geht’s' : 'Weiter';
+  $('#obNext').disabled = false;
+
+  const opts = (name, list, cur) => `<div class="ob-opts">${list.map(o => `
+    <button class="ob-opt${String(cur) === String(o.id) ? ' on' : ''}" type="button"
+      data-ob="${name}" data-val="${o.id}">
+      <span class="grow"><b>${esc(o.label)}</b>${o.sub ? `<span>${esc(o.sub)}</span>` : ''}</span>
+      <span class="ob-check">${icon('check',15,3.4)}</span>
+    </button>`).join('')}</div>`;
+
+  const V = {
+    name: () => `
+      <div class="ob-mark">${icon('hand',30,2.2)}</div>
+      <h2>Willkommen bei Pflege Deutsch</h2>
+      <p>Deutsch für die Arbeit in der Pflege – in Deutschland, Österreich und der Schweiz.
+      Zuerst: Wie sollen wir dich nennen?</p>
+      <label class="sr-only" for="obName">Dein Name</label>
+      <input class="input mt20" id="obName" placeholder="Dein Vorname" value="${esc(OB.data.name)}"
+        autocomplete="given-name" enterkeyhint="next" maxlength="24">
+      <p class="ob-note">Alles bleibt nur auf diesem Gerät gespeichert. Kein Konto, keine Anmeldung.</p>`,
+
+    lang: () => `<h2>Welche Übersetzung hilft dir?</h2>
+      <p>Schwierige Ausdrücke zeigen wir zusätzlich in deiner Sprache.</p>
+      ${opts('lang', LANGS, OB.data.lang)}`,
+
+    exp: () => `<h2>Arbeitest du schon in der Pflege?</h2>
+      <p>Das entscheidet, wie viel Fachsprache wir von Anfang an einsetzen.</p>
+      ${opts('exp', [
+        { id:'jetzt', label:'Ja, ich arbeite gerade', sub:'Auch als Helferin oder im Praktikum' },
+        { id:'frueher', label:'Ja, früher schon', sub:'Ich komme zurück in den Beruf' },
+        { id:'ausbildung', label:'Ich bin in der Ausbildung', sub:'Schule oder Anerkennung läuft' },
+        { id:'neu', label:'Nein, ich bin neu', sub:'Ich fange gerade an' }
+      ], OB.data.exp)}`,
+
+    env: () => `<h2>Wo möchtest du arbeiten?</h2>
+      <p>Danach richten sich die Situationen, die du übst.</p>
+      ${opts('env', ENVS, OB.data.env)}`,
+
+    level: () => `<h2>Wie gut ist dein Deutsch heute?</h2>
+      <p>Ehrlich schätzen hilft mehr als hoch schätzen.</p>
+      ${opts('level', LEVELS_CEFR, OB.data.level)}`,
+
+    goal: () => `<h2>Was ist gerade am wichtigsten?</h2>
+      <p>Ein Ziel reicht. Ändern kannst du es jederzeit.</p>
+      ${opts('goal', Object.entries(GOALS).map(([id, g]) =>
+        ({ id, label:g.label, sub:g.focus })), OB.data.goal)}`,
+
+    minutes: () => `<h2>Wie viel Zeit hast du am Tag?</h2>
+      <p>Lieber wenig und täglich als viel und selten.</p>
+      ${opts('minutes', MINUTES, OB.data.minutes)}`,
+
+    plan: () => {
+      const g = GOALS[OB.data.goal] || GOALS.patient;
+      const m = MINUTES.find(x => x.id === +OB.data.minutes) || MINUTES[1];
+      const env = ENVS.find(e => e.id === OB.data.env);
+      const lv = LEVELS_CEFR.find(l => l.id === OB.data.level);
+      const start = g.lesson === 'FX' ? FEATURE.title : (LESSON_BY_ID[g.lesson] || {}).title;
+      return `
+        <div class="ob-mark ok">${icon('check',30,3)}</div>
+        <h2>Dein Plan steht, ${esc(OB.data.name || 'Kollegin')}</h2>
+        <p>So fangen wir an. Der Plan passt sich an, sobald wir sehen, was dir leicht und was dir schwer fällt.</p>
+        <div class="ob-plan">
+          <div class="kv"><span>Ziel</span><b>${esc(g.label)}</b></div>
+          <div class="kv"><span>Schwerpunkt</span><b>${esc(g.focus)}</b></div>
+          ${env ? `<div class="kv"><span>Umfeld</span><b>${esc(env.label)}</b></div>` : ''}
+          ${lv ? `<div class="kv"><span>Niveau</span><b>${esc(lv.label)}</b></div>` : ''}
+          <div class="kv"><span>Täglich</span><b>${m.label} · ${m.goal} XP</b></div>
+          <div class="kv"><span>Erste Einheit</span><b>${esc(start || 'Begrüßung und Vorstellung')}</b></div>
+        </div>
+        <p class="ob-note">Deine Angaben liegen nur in diesem Browser. Wenn du die Seite über
+        „Zum Home-Bildschirm“ öffnest, bleibt dein Fortschritt am zuverlässigsten erhalten.</p>`;
+    }
+  };
+
+  body.innerHTML = V[step]();
+  body.scrollTop = 0;
+
+  $$('[data-ob]', body).forEach(b => b.onclick = () => {
+    const k = b.dataset.ob;
+    OB.data[k] = k === 'minutes' ? +b.dataset.val : b.dataset.val;
+    sfx('tap');
+    $$('[data-ob]', body).forEach(x => x.classList.toggle('on', x === b));
+    setTimeout(() => { if (OB) obGo(1); }, 220);
+  });
+  const inp = $('#obName');
+  if (inp) {
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') obGo(1); });
+    setTimeout(() => inp.focus({ preventScroll:true }), 220);
+  }
+}
+
+function finishOnboarding() {
+  const d = OB.data;
+  const m = MINUTES.find(x => x.id === +d.minutes) || MINUTES[1];
+  S.user.name = (d.name || '').trim() || 'Kollegin';
+  S.user.lang = d.lang; S.user.exp = d.exp; S.user.env = d.env;
+  S.user.level = d.level; S.user.goal2 = d.goal; S.user.minutes = +d.minutes;
+  S.user.workplace = (ENVS.find(e => e.id === d.env) || {}).label || S.user.workplace;
+  S.user.goal = (GOALS[d.goal] || {}).label || S.user.goal;
+  S.dailyGoal = m.goal;
+  S.settings.trans = d.lang !== 'de';
+  S.onboarded = true;
+  saveState();
+  const wasEdit = OB.edit;
+  obClose();
+  renderAll();
+  sfx('complete');
+  toast(wasEdit ? 'Angaben gespeichert – Plan angepasst.' : 'Willkommen, ' + S.user.name + '!', 'win');
+}
+
+/* ==========================================================================
+   27. TAGESPLAN
+   ========================================================================== */
+/** Drei Schritte für heute, abgeleitet aus Ziel, Fälligkeiten und Verlauf. */
+function todayPlan() {
+  const g = GOALS[S.user.goal2] || GOALS.patient;
+  const cur = currentLesson();
+  const due = dueVocab();
+  const scen = SCEN_BY_ID[g.scen];
+  const today = dayKey();
+  const feat = { ico:'book', label:'Referenz-Lektion', title:FEATURE.title, min:8, act:'data-feature="1"', done:false };
+  const curStep = () => cur
+    ? { ico:'book', label:'Lektion', title:cur.title, min:6, act:`data-start="${cur.id}"`, done:false }
+    : feat;
+
+  // Ziel-Einheit bestimmen. Gesperrte Lektionen werden nicht übersprungen –
+  // erst kommt die aktuelle Station, das Ziel wird als Ausblick genannt.
+  let step1, later = null;
+  if (g.lesson === 'FX') {
+    step1 = (S.lessons[FEATURE.id] || {}).done ? curStep() : feat;
+  } else {
+    const l = LESSON_BY_ID[g.lesson];
+    const idx = LESSONS.findIndex(x => x.id === g.lesson);
+    const locked = idx >= 0 && nodeStatus(idx) === 'locked';
+    const done = !!(S.lessons[g.lesson] || {}).done;
+    if (locked || done || !l) {
+      if (locked && l) later = l.title;
+      step1 = curStep();
+    } else {
+      step1 = { ico:'book', label:'Lektion', title:l.title, min:6, act:`data-start="${g.lesson}"`, done:false };
+    }
+  }
+
+  const steps = [step1, {
+    ico:'repeat', label:'Wiederholung',
+    title: due.length ? due.length + ' Wörter auffrischen' : 'Freie Wiederholung',
+    min:3, act:'data-review="1"', done: due.length === 0 && S.stats.reviewsTotal > 0
+  }];
+  if (scen) steps.push({ ico:'chat', label:'Rollenspiel', title:scen.title, min:5,
+    act:`data-scen="${scen.id}"`, done: S.rp.some(r => r.date === today) });
+
+  return { goal:g, steps, later, min:steps.reduce((a, x) => a + x.min, 0) };
+}
+
+function planCardHTML() {
+  const p = todayPlan();
+  const doneCount = p.steps.filter(s => s.done).length;
+  return `
+    <div class="card plan-card mt14">
+      <div class="between">
+        <div class="eyebrow">Dein Plan heute</div>
+        <span class="sub" style="font-size:12px">${doneCount}/${p.steps.length} · ca. ${p.min} Min</span>
+      </div>
+      <p class="sub" style="margin-top:4px">Ziel: <b style="color:var(--navy)">${esc(p.goal.label)}</b></p>
+      <div class="plan-steps">
+        ${p.steps.map((s, i) => `
+          <button class="plan-step${s.done ? ' done' : ''}" type="button" ${s.act}>
+            <span class="ps-n">${s.done ? icon('check',14,3.6) : (i + 1)}</span>
+            <span class="grow">
+              <span class="ps-l">${esc(s.label)} · ${s.min} Min</span>
+              <b>${esc(s.title)}</b>
+            </span>
+            <span class="ps-go">${icon(s.done ? 'repeat' : 'play', 16, 2.6)}</span>
+          </button>`).join('')}
+      </div>
+      ${p.later ? `<p class="sub" style="font-size:12.5px;margin-top:10px">Deine Ziel-Lektion
+        „${esc(p.later)}“ öffnet sich, sobald die Stationen davor abgeschlossen sind.</p>` : ''}
+    </div>`;
+}
+
+/* ==========================================================================
+   28. SCHWERERE AUFGABENTYPEN
+   --------------------------------------------------------------------------
+   Bilder ohne Beschriftung, Artikel, Plural und Lückensätze. Die Auswahl
+   richtet sich nach der Beherrschung eines Wortes: was sitzt, wird härter
+   geprüft.
+   ========================================================================== */
+
+/* --- Spiel 1 neu: Bild zuordnen, ohne verratene Antwort ------------------- */
+function renderImageGame(it, body, kicker) {
+  const v = VOCAB_BY_ID[it.vid];
+  const m = masteryOf(v.id);
+  // full = Wort + Übersetzung, word = nur Deutsch, audio = nur hören
+  let mode = it.mode || (m >= 70 ? 'audio' : m >= 35 ? 'word' : 'full');
+  if (mode === 'audio' && !Speech.ready) mode = 'word';   // ohne Stimme nicht lösbar
+  // Ablenker möglichst aus derselben Kategorie: dann zählt die Bedeutung, nicht die Kategorie
+  const pool = VOCAB.filter(x => x.ill && x.id !== v.id);
+  const near = shuffle(pool.filter(x => x.cat === v.cat));
+  const far  = shuffle(pool.filter(x => x.cat !== v.cat));
+  const opts = shuffle([v].concat(near.concat(far).slice(0, 3)));
+  let sel = null;
+
+  body.innerHTML = `
+    <div class="q-kicker">${kicker}</div>
+    <h2 class="q-title">${mode === 'audio' ? 'Höre zu. Welches Bild passt?' : 'Welches Bild passt?'}</h2>
+    <div class="row mt14" style="gap:12px;align-items:center">
+      <button class="icon-btn" type="button" style="width:52px;height:52px;flex:none"
+        data-say="${esc(v.art + ' ' + v.w)}" aria-label="Wort anhören">${icon('volume',22)}</button>
+      ${mode === 'audio'
+        ? `<div><b style="font-size:16.5px">Noch einmal hören</b>
+             <div class="sub" style="font-size:12.5px">Diesmal ohne geschriebenes Wort.</div></div>`
+        : `<div><b style="font-size:21px;letter-spacing:-.02em">${v.art} ${esc(v.w)}</b>
+             ${mode === 'full' && S.settings.trans ? `<div class="bcs">${esc(v.bcs)}</div>` : ''}</div>`}
+    </div>
+    <div class="opts grid2" role="group" aria-label="Vier Bilder – wähle das passende">
+      ${opts.map((o, i) => `<button class="opt card-opt" type="button" data-opt="${o.id}" aria-label="Bild ${i + 1}">
+        <span class="illu">${ILLU[o.ill]}</span>
+        <span class="opt-name" hidden>${esc(o.art + ' ' + o.w)}</span>
+        <span class="mark">${icon('check',15,3.4)}</span></button>`).join('')}
+    </div>
+    <p class="sub" style="font-size:12.5px;margin-top:12px">Die Namen erscheinen erst nach dem Prüfen.</p>`;
+
+  if (mode === 'audio') setTimeout(() => Speech.say(v.art + ' ' + v.w, { role:'pflege' }), 340);
+
+  foot('Prüfen', false);
+  $$('.opt', body).forEach(b => b.onclick = () => {
+    if (SESS.answered) return;
+    sfx('tap');
+    $$('.opt', body).forEach(x => x.classList.remove('sel'));
+    b.classList.add('sel'); sel = b.dataset.opt; enableFoot(true);
+  });
+  SESS.answered = false;
+  SESS.check = () => {
+    const ok = sel === v.id;
+    const chosen = VOCAB_BY_ID[sel];
+    $$('.opt', body).forEach(b => {
+      const nm = b.querySelector('.opt-name');
+      if (nm) nm.hidden = false;                       // Namen erst jetzt aufdecken
+      if (b.dataset.opt === v.id) b.classList.add('ok');
+      else if (b.dataset.opt === sel) { b.classList.add('no'); b.querySelector('.mark').innerHTML = icon('x',15,3.4); }
+      b.disabled = true;
+    });
+    if (!ok) shakeBody();
+    resolve(ok, {
+      title: ok ? feedbackPraise() : `Richtig ist: ${v.art} ${v.w}`,
+      text: `<b>${esc(v.ex)}</b>${S.settings.trans ? `<br><span class="bcs">${esc(v.exb)}</span>` : ''}`,
+      note: ok ? '' : `Du hast <b>${chosen ? esc(chosen.art + ' ' + chosen.w) : '–'}</b> gewählt.
+        Merke: <b>${v.art} ${esc(v.w)}</b> – ${esc(v.bcs)}. Das Wort kommt gleich noch einmal.`
+    });
+    if (ok) Speech.say(v.art + ' ' + v.w, { role:'pflege' });
+  };
+}
+
+/* --- Artikel wählen ------------------------------------------------------- */
+/** Ehrlicher Merkhinweis: nur zeigen, wenn die Regel wirklich passt. */
+function genderHint(v) {
+  const rules = [
+    [/(ung|heit|keit|schaft|tion|tät|ik|ur)$/, 'die', 'Endet ein Wort auf -ung, -heit, -keit, -schaft, -tion, -tät oder -ur, ist es weiblich: die.'],
+    [/(chen|lein|ment|um|nis)$/, 'das', 'Wörter auf -chen, -lein, -ment, -um und -nis sind sächlich: das.'],
+    [/(er|or|ling|ismus)$/, 'der', 'Wörter auf -er, -or und -ling sind meistens männlich: der.'],
+    [/e$/, 'die', 'Viele Wörter auf -e sind weiblich: die. Es gibt Ausnahmen, deshalb immer mit Artikel lernen.']
+  ];
+  for (let i = 0; i < rules.length; i++) {
+    if (rules[i][0].test(v.w) && v.art === rules[i][1]) return rules[i][2];
+  }
+  return 'Bei diesem Wort hilft keine Regel. Lerne den Artikel immer zusammen mit dem Wort.';
+}
+
+function renderGenderGame(it, body, kicker) {
+  const v = VOCAB_BY_ID[it.vid];
+  let sel = null;
+  body.innerHTML = `
+    <div class="q-kicker">${kicker} · Artikel</div>
+    <h2 class="q-title">Welcher Artikel gehört dazu?</h2>
+    <p class="q-sub">Der Artikel entscheidet später über Endungen – deshalb zählt er.</p>
+    <div class="card mt14 center" style="padding:22px 16px">
+      <b style="font-size:27px;letter-spacing:-.03em">${esc(v.w)}</b>
+      ${S.settings.trans ? `<div class="bcs" style="margin-top:4px">${esc(v.bcs)}</div>` : ''}
+      <div class="row mt14" style="justify-content:center">
+        <button class="icon-btn" type="button" data-say="${esc(v.art + ' ' + v.w)}" aria-label="Anhören">${icon('volume',19)}</button>
+      </div>
+    </div>
+    <div class="opts" role="group" aria-label="Artikel wählen">
+      ${['der','die','das'].map((a, i) => `<button class="opt" type="button" data-opt="${a}">
+        <kbd>${i+1}</kbd><span style="font-size:17px;font-weight:800">${a}</span>
+        <span class="mark">${icon('check',15,3.4)}</span></button>`).join('')}
+    </div>`;
+  foot('Prüfen', false);
+  $$('.opt', body).forEach(b => b.onclick = () => {
+    if (SESS.answered) return;
+    sfx('tap');
+    $$('.opt', body).forEach(x => x.classList.remove('sel'));
+    b.classList.add('sel'); sel = b.dataset.opt; enableFoot(true);
+  });
+  SESS.answered = false;
+  SESS.check = () => {
+    const ok = sel === v.art;
+    $$('.opt', body).forEach(b => {
+      if (b.dataset.opt === v.art) b.classList.add('ok');
+      else if (b.dataset.opt === sel) { b.classList.add('no'); b.querySelector('.mark').innerHTML = icon('x',15,3.4); }
+      b.disabled = true;
+    });
+    if (!ok) shakeBody();
+    resolve(ok, {
+      title: ok ? 'Artikel sitzt' : `Richtig: ${v.art} ${v.w}`,
+      text: `<b>${esc(v.ex)}</b>${S.settings.trans ? `<br><span class="bcs">${esc(v.exb)}</span>` : ''}`,
+      note: `<b>Merkhilfe:</b> ${esc(genderHint(v))}
+        <div class="row mt10" style="gap:8px">
+          <button class="icon-btn" type="button" data-say="${esc(v.art + ' ' + v.w)}" aria-label="Nachsprechen">${icon('volume',17)}</button>
+          <span class="sub grow" style="font-size:12.5px">Sprich nach: <b style="color:var(--navy)">${v.art} ${esc(v.w)}</b></span>
+        </div>`
+    });
+  };
+}
+
+/* --- Plural bilden -------------------------------------------------------- */
+const plBare = (s) => String(s || '').replace(/^(die|der|das)\s+/i, '').trim();
+
+function pluralOptions(v) {
+  const right = plBare(v.pl), w = v.w;
+  const made = [w + 'e', w + 'en', w + 'n', w + 's', w + 'er',
+                w.replace(/e$/, 'en'), w.replace(/a/, 'ä') + 'e'];
+  const wrong = [];
+  made.forEach(c => { if (c !== right && c !== w && !wrong.includes(c) && c.length > 3) wrong.push(c); });
+  return shuffle([right].concat(shuffle(wrong).slice(0, 3)));
+}
+
+function renderPluralGame(it, body, kicker) {
+  const v = VOCAB_BY_ID[it.vid];
+  const right = plBare(v.pl);
+  const opts = pluralOptions(v);
+  let sel = null;
+  body.innerHTML = `
+    <div class="q-kicker">${kicker} · Plural</div>
+    <h2 class="q-title">Wie lautet die Mehrzahl?</h2>
+    <div class="card mt14 center" style="padding:20px 16px">
+      <span class="sub" style="font-size:12.5px">Einzahl</span>
+      <b style="display:block;font-size:24px;letter-spacing:-.03em;margin-top:2px">${v.art} ${esc(v.w)}</b>
+    </div>
+    <div class="opts" role="group" aria-label="Pluralformen">
+      ${opts.map((o, i) => `<button class="opt" type="button" data-opt="${esc(o)}">
+        <kbd>${i+1}</kbd><span>die ${esc(o)}</span><span class="mark">${icon('check',15,3.4)}</span></button>`).join('')}
+    </div>`;
+  foot('Prüfen', false);
+  $$('.opt', body).forEach(b => b.onclick = () => {
+    if (SESS.answered) return;
+    sfx('tap');
+    $$('.opt', body).forEach(x => x.classList.remove('sel'));
+    b.classList.add('sel'); sel = b.dataset.opt; enableFoot(true);
+  });
+  SESS.answered = false;
+  SESS.check = () => {
+    const ok = sel === right;
+    $$('.opt', body).forEach(b => {
+      if (b.dataset.opt === right) b.classList.add('ok');
+      else if (b.dataset.opt === sel) { b.classList.add('no'); b.querySelector('.mark').innerHTML = icon('x',15,3.4); }
+      b.disabled = true;
+    });
+    if (!ok) shakeBody();
+    resolve(ok, {
+      title: ok ? 'Richtige Mehrzahl' : `Richtig: die ${right}`,
+      text: `<b>${v.art} ${esc(v.w)} → die ${esc(right)}</b>`,
+      note: `Im Plural heißt der Artikel immer <b>die</b>.
+        <div class="row mt10" style="gap:8px">
+          <button class="icon-btn" type="button" data-say="die ${esc(right)}" aria-label="Anhören">${icon('volume',17)}</button>
+          <span class="sub grow" style="font-size:12.5px">Im Dienst brauchst du oft den Plural: „die ${esc(right)}“.</span>
+        </div>`
+    });
+  };
+}
+
+/* --- Lückensatz ----------------------------------------------------------- */
+let CLOZE = null;
+/** Regex mit Wortgrenzen – verhindert Treffer wie „Schmerz“ in „Schmerzen“. */
+function wordRe(w) {
+  return new RegExp('(^|[^A-Za-zÄÖÜäöüß])(' +
+    w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')(?![A-Za-zÄÖÜäöüß])');
+}
+let CLOZE_UNUSED = null;
+/** Paare aus Satz und darin enthaltenem Wort, einmalig berechnet. */
+function clozeAll() {
+  if (CLOZE) return CLOZE;
+  CLOZE = [];
+  SENTENCES.forEach(s => {
+    VOCAB.forEach(v => {
+      if (v.w.length >= 4 && s.de.indexOf(v.w) > 0 && wordRe(v.w).test(s.de))
+        CLOZE.push({ sid:s.id, vid:v.id });
+    });
+  });
+  return CLOZE;
+}
+const clozeFor = (vid) => clozeAll().filter(c => c.vid === vid)[0] || null;
+
+function renderClozeGame(it, body, kicker) {
+  const s = SENT_BY_ID[it.sid], v = VOCAB_BY_ID[it.vid];
+  const gap = esc(s.de).replace(wordRe(v.w), (mm, p1) => p1 + '<span class="blank">?</span>');
+  const pool = VOCAB.filter(x => x.id !== v.id && x.w.length >= 4);
+  const near = shuffle(pool.filter(x => x.cat === v.cat));
+  const opts = shuffle([v].concat(near.concat(shuffle(pool)).slice(0, 3)));
+  let sel = null;
+  body.innerHTML = `
+    <div class="q-kicker">${kicker} · Lücke füllen</div>
+    <h2 class="q-title">Welches Wort fehlt?</h2>
+    <div class="card mt14" style="background:var(--mint);border-color:var(--mint-2)">
+      <p class="cloze-sent">${gap}</p>
+      <div class="row mt10" style="gap:8px">
+        <button class="icon-btn" type="button" data-say="${esc(s.de)}" aria-label="Satz anhören">${icon('volume',18)}</button>
+        ${S.settings.trans ? `<span class="bcs grow">${esc(s.bcs)}</span>` : ''}
+      </div>
+    </div>
+    <div class="opts" role="group" aria-label="Wörter">
+      ${opts.map((o, i) => `<button class="opt" type="button" data-opt="${o.id}">
+        <kbd>${i+1}</kbd><span>${esc(o.w)}</span><span class="mark">${icon('check',15,3.4)}</span></button>`).join('')}
+    </div>`;
+  foot('Prüfen', false);
+  $$('.opt', body).forEach(b => b.onclick = () => {
+    if (SESS.answered) return;
+    sfx('tap');
+    $$('.opt', body).forEach(x => x.classList.remove('sel'));
+    b.classList.add('sel'); sel = b.dataset.opt; enableFoot(true);
+  });
+  SESS.answered = false;
+  SESS.check = () => {
+    const ok = sel === v.id;
+    $$('.opt', body).forEach(b => {
+      if (b.dataset.opt === v.id) b.classList.add('ok');
+      else if (b.dataset.opt === sel) { b.classList.add('no'); b.querySelector('.mark').innerHTML = icon('x',15,3.4); }
+      b.disabled = true;
+    });
+    if (!ok) shakeBody();
+    resolve(ok, {
+      title: ok ? 'Satz vollständig' : `Fehlt: ${v.w}`,
+      text: `<b>${esc(s.de)}</b>${S.settings.trans ? `<br><span class="bcs">${esc(s.bcs)}</span>` : ''}`,
+      note: `<b>Grammatik:</b> ${esc(s.gram)}
+        <div class="row mt10" style="gap:8px">
+          <button class="icon-btn" type="button" data-say="${esc(s.de)}" aria-label="Nachsprechen">${icon('volume',17)}</button>
+          <span class="sub grow" style="font-size:12.5px">Ganzen Satz hören und nachsprechen.</span>
+        </div>`
+    });
+  };
+}
+
+/* ==========================================================================
+   29. AUFGABENMISCHUNG
+   ========================================================================== */
+/** Aufgabentyp gewichtet wählen: beherrschte Wörter werden härter geprüft,
+    und kein Typ soll die Wiederholung dominieren. */
+function pickReviewType(id) {
+  const v = VOCAB_BY_ID[id], m = masteryOf(id);
+  const cz = clozeFor(id);
+  const hasPl = v.pl && plBare(v.pl) !== v.w;
+  const bag = [];
+  const add = (item, w) => { for (let i = 0; i < w; i++) bag.push(item); };
+  if (m < 50) {                                  // aufbauen: erkennen und zuordnen
+    if (v.ill) add({ type:'image' }, 4);
+    add({ type:'word' }, 3);
+    add({ type:'gender' }, 2);
+    if (cz) add({ type:'cloze', sid:cz.sid }, 2);
+  } else {                                       // festigen: produzieren und unterscheiden
+    if (cz) add({ type:'cloze', sid:cz.sid }, 4);
+    if (hasPl) add({ type:'plural' }, 3);
+    add({ type:'gender' }, 2);
+    if (v.ill) add({ type:'image', mode:'audio' }, 3);
+    add({ type:'word' }, 1);
+  }
+  return bag.length ? pick(bag) : { type:'word' };
+}
+
+function buildReviewItems(n = 5) {
+  let ids = dueVocab();
+  if (ids.length < n) {
+    const rest = VOCAB.map(v => v.id)
+      .filter(id => !ids.includes(id))
+      .sort((a, b) => masteryOf(a) - masteryOf(b));
+    ids = ids.concat(rest.slice(0, n - ids.length));
+  }
+  // Kein Typ darf eine Wiederholung dominieren
+  const cap = Math.max(2, Math.ceil(n / 3));
+  const count = {};
+  return shuffle(ids).slice(0, n).map(id => {
+    let t = pickReviewType(id), tries = 0;
+    while ((count[t.type] || 0) >= cap && tries++ < 5) t = pickReviewType(id);
+    count[t.type] = (count[t.type] || 0) + 1;
+    return Object.assign({ vid:id, review:true }, t);
+  });
+}
+
+function buildLessonItems(l) {
+  const items = [];
+  const words = (l.vocab || []).map(id => VOCAB_BY_ID[id]).filter(Boolean);
+  const withIll = shuffle(words.filter(w => w.ill));
+  const noIll = shuffle(words.filter(w => !w.ill));
+  withIll.slice(0, 3).forEach(w => items.push({ type:'image', vid:w.id }));
+  noIll.slice(0, 2).forEach(w => items.push({ type:'word', vid:w.id }));
+
+  // Artikel und Plural: zwei verschiedene Wörter, damit nichts doppelt kommt
+  const extra = shuffle(words.slice());
+  if (extra[0]) items.push({ type:'gender', vid:extra[0].id });
+  const plw = extra.find(w => w.id !== (extra[0] || {}).id && w.pl && plBare(w.pl) !== w.w);
+  if (plw) items.push({ type:'plural', vid:plw.id });
+
+  // Lückensatz aus einem Satz dieser Lektion
+  const cz = clozeAll().filter(c => (l.sents || []).indexOf(c.sid) >= 0)[0];
+  if (cz) items.push({ type:'cloze', sid:cz.sid, vid:cz.vid });
+
+  const sents = shuffle((l.sents || []).slice());
+  if (sents[0]) items.push({ type:'build', sid:sents[0] });
+  if (sents[1]) items.push({ type:'listen', sid:sents[1] });
+  if (sents[2] || sents[0]) items.push({ type:'speak', sid:sents[2] || sents[0] });
+
+  const mixed = shuffle(items);
+  if (l.dec) mixed.push({ type:'decision', did:l.dec });
+  return mixed;
+}
+
+/* ==========================================================================
+   30. DARSTELLUNG — heller und dunkler Modus
+   ========================================================================== */
+function resolvedDark() {
+  const t = (S.settings && S.settings.theme) || 'auto';
+  if (t === 'dark') return true;
+  if (t === 'light') return false;
+  try { return matchMedia('(prefers-color-scheme: dark)').matches; } catch (e) { return false; }
+}
+
+function applyTheme() {
+  const dark = resolvedDark();
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', dark ? '#0B1520' : '#FFFFFF');
+}
+
+function cycleTheme() {
+  const order = ['auto', 'light', 'dark'];
+  const cur = (S.settings.theme || 'auto');
+  S.settings.theme = order[(order.indexOf(cur) + 1) % 3];
+  saveState(); applyTheme(); renderProfile();
+  toast({ auto:'Darstellung folgt dem System.', light:'Heller Modus aktiv.', dark:'Dunkler Modus aktiv.' }[S.settings.theme]);
+}
+
+const themeLabel = () => ({ auto:'Wie im System', light:'Immer hell', dark:'Immer dunkel' }[S.settings.theme || 'auto']);
+
+/* ==========================================================================
+   31. TAGESAUFGABEN
+   ========================================================================== */
+/** Tageszähler; wird beim Datumswechsel automatisch geleert. */
+function today() {
+  if (!S.today || S.today.day !== dayKey())
+    S.today = { day:dayKey(), xp:0, words:0, speak:0, blitz:0, match:0, dialog:0, perfect:0 };
+  return S.today;
+}
+function bump(key, n = 1) {
+  const t = today();
+  t[key] = (t[key] || 0) + n;
+  saveState();
+  checkQuests();
+}
+
+const QUESTS = {
+  q_xp:      { label:'Tagesziel erreichen',   key:'xp',      goal:() => S.dailyGoal, ico:'bolt',  xp:15 },
+  q_words:   { label:'10 Wörter richtig',     key:'words',   goal:() => 10, ico:'cards', xp:15 },
+  q_speak:   { label:'3 Sätze laut sprechen', key:'speak',   goal:() => 3,  ico:'mic',   xp:20 },
+  q_blitz:   { label:'Eine Blitz-Runde',      key:'blitz',   goal:() => 1,  ico:'bolt',  xp:15 },
+  q_match:   { label:'Paare finden spielen',  key:'match',   goal:() => 1,  ico:'star',  xp:15 },
+  q_dialog:  { label:'Einen Dialog anhören',  key:'dialog',  goal:() => 1,  ico:'chat',  xp:10 },
+  q_perfect: { label:'Lektion ohne Fehler',   key:'perfect', goal:() => 1,  ico:'crown', xp:25 }
+};
+
+/** Drei Aufgaben pro Tag, aus dem Datum abgeleitet – bleiben den Tag über gleich. */
+function questIds() {
+  const keys = Object.keys(QUESTS).filter(k => k !== 'q_xp');
+  const seed = dayKey().split('-').reduce((a, b) => a + parseInt(b, 10), 0);
+  const off = seed % keys.length;
+  return ['q_xp'].concat(keys.slice(off).concat(keys.slice(0, off)).slice(0, 2));
+}
+
+let questBusy = false;
+function checkQuests() {
+  if (questBusy) return;
+  questBusy = true;
+  try {
+    const t = today();
+    if (!S.claimed || S.claimed.day !== t.day) S.claimed = { day:t.day, ids:[] };
+    questIds().forEach(id => {
+      const q = QUESTS[id];
+      if ((t[q.key] || 0) >= q.goal() && S.claimed.ids.indexOf(id) < 0) {
+        S.claimed.ids.push(id);
+        sfx('goal');
+        addXP(q.xp, { noGoal:true });
+        toast('Tagesaufgabe erledigt: ' + q.label + ' · +' + q.xp + ' XP', 'win');
+      }
+    });
+  } finally { questBusy = false; }
+}
+
+function questCardHTML() {
+  const t = today();
+  const ids = questIds();
+  const claimed = (S.claimed && S.claimed.day === t.day) ? S.claimed.ids : [];
+  const doneCount = ids.filter(id => claimed.indexOf(id) >= 0).length;
+  return `
+    <div class="card mt14">
+      <div class="between">
+        <div class="eyebrow">Tagesaufgaben</div>
+        <span class="sub" style="font-size:12px">${doneCount}/${ids.length} erledigt</span>
+      </div>
+      <div class="quests">
+        ${ids.map(id => {
+          const q = QUESTS[id], goal = q.goal(), have = Math.min(goal, t[q.key] || 0);
+          const done = claimed.indexOf(id) >= 0 || have >= goal;
+          return `<div class="quest${done ? ' done' : ''}">
+            <span class="q-ico">${icon(done ? 'check' : q.ico, 17, done ? 3.4 : 2.4)}</span>
+            <span class="grow">
+              <b>${esc(q.label)}</b>
+              ${barSVG(have / goal, done ? '' : 'thin')}
+            </span>
+            <span class="q-xp">${done ? '+' + q.xp : have + '/' + goal}</span>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+}
+
+/* ==========================================================================
+   32. SPIELE-EINSTIEG
+   ========================================================================== */
+function gamesRowHTML() {
+  return `
+    <div class="eyebrow" style="margin:20px 0 -4px">Spiele</div>
+    <div class="games">
+      <button class="game-card g-blitz" type="button" data-game="blitz">
+        <span class="g-ico">${icon('bolt',24,2.4)}</span>
+        <b>Blitz-Runde</b>
+        <span>60 Sekunden, so viele Wörter wie möglich</span>
+        <span class="g-meta">${icon('clock',13,2.6)} 1 Min</span>
+      </button>
+      <button class="game-card g-match" type="button" data-game="match">
+        <span class="g-ico">${icon('cards',24,2.4)}</span>
+        <b>Paare finden</b>
+        <span>Deutsch und Übersetzung verbinden</span>
+        <span class="g-meta">${icon('clock',13,2.6)} 2 Min</span>
+      </button>
+    </div>`;
+}
+
+/** Spielmodus verlassen und aufräumen */
+function endGameMode() {
+  if (BLITZ && BLITZ.tick) clearInterval(BLITZ.tick);
+  if (MATCH && MATCH.tick) clearInterval(MATCH.tick);
+  BLITZ = null; MATCH = null;
+  document.body.classList.remove('session');
+  hideFoot(); hideFeedback();
+  go('home');
+}
+
+/* ==========================================================================
+   33. SPIEL: BLITZ-RUNDE
+   ========================================================================== */
+let BLITZ = null;
+const BLITZ_MS = 60000;
+
+function startBlitz() {
+  Speech.stop(true);
+  SESS = null; RP = null; MATCH = null;
+  document.body.classList.add('session');
+  hideFoot(); hideFeedback();
+  window.scrollTo(0, 0);
+  BLITZ = { t0:Date.now(), pts:0, combo:0, best:0, right:0, wrong:0, seen:[], lock:false };
+  $('#sessHearts').innerHTML = `<span class="bz-clock">${icon('clock',15,2.6)}<b id="bzTime">60</b></span>`;
+  blitzQuestion();
+  BLITZ.tick = setInterval(blitzTick, 100);
+}
+
+function blitzTick() {
+  if (!BLITZ) return;
+  const left = Math.max(0, BLITZ_MS - (Date.now() - BLITZ.t0));
+  $('#sessBar').style.width = (left / BLITZ_MS * 100) + '%';
+  const el = $('#bzTime');
+  if (el) {
+    el.textContent = Math.ceil(left / 1000);
+    el.parentNode.classList.toggle('hot', left < 10000);
+  }
+  if (left <= 0) blitzEnd();
+}
+
+const blitzMult = (c) => c >= 9 ? 4 : c >= 6 ? 3 : c >= 3 ? 2 : 1;
+
+function blitzQuestion() {
+  if (!BLITZ) return;
+  const pool = VOCAB.filter(v => BLITZ.seen.indexOf(v.id) < 0);
+  const v = pick(pool.length > 3 ? pool : VOCAB);
+  BLITZ.seen.push(v.id);
+  if (BLITZ.seen.length > VOCAB.length - 4) BLITZ.seen = [v.id];
+  const deToBcs = Math.random() < 0.5;
+  const others = shuffle(VOCAB.filter(x => x.id !== v.id && x.cat === v.cat)
+    .concat(shuffle(VOCAB.filter(x => x.id !== v.id)))).slice(0, 2);
+  const opts = shuffle([v].concat(others));
+  BLITZ.v = v; BLITZ.lock = false;
+
+  $('#sessBody').innerHTML = `
+    <div class="bz-top">
+      <div class="bz-score"><span>Punkte</span><b id="bzPts">${BLITZ.pts}</b></div>
+      <div class="bz-combo${BLITZ.combo >= 3 ? ' on' : ''}" id="bzCombo">
+        ${BLITZ.combo >= 3 ? '×' + blitzMult(BLITZ.combo) + ' Serie ' + BLITZ.combo : 'Serie aufbauen'}
+      </div>
+    </div>
+    <div class="bz-q">
+      <span class="sub" style="font-size:12.5px">${deToBcs ? 'Was bedeutet' : 'Wie heißt auf Deutsch'}</span>
+      <b>${deToBcs ? esc(v.art + ' ' + v.w) : esc(v.bcs)}</b>
+    </div>
+    <div class="bz-opts" role="group" aria-label="Antwort wählen">
+      ${opts.map(o => `<button class="bz-opt" type="button" data-bz="${o.id}">
+        ${deToBcs ? esc(o.bcs) : esc(o.art + ' ' + o.w)}</button>`).join('')}
+    </div>
+    <p class="sub center" style="font-size:12px;margin-top:16px">Keine Herzen, kein Prüfen – nur Tempo.</p>`;
+
+  $$('.bz-opt').forEach(b => b.onclick = () => blitzAnswer(b, b.dataset.bz === v.id));
+}
+
+function blitzAnswer(btn, ok) {
+  if (!BLITZ || BLITZ.lock) return;
+  BLITZ.lock = true;
+  const v = BLITZ.v;
+  if (ok) {
+    const gain = blitzMult(BLITZ.combo);
+    BLITZ.pts += gain; BLITZ.right++; BLITZ.combo++;
+    BLITZ.best = Math.max(BLITZ.best, BLITZ.combo);
+    btn.classList.add('ok');
+    sfx('correct');
+    srsUpdate(v.id, true);
+    if (BLITZ.combo === 3 || BLITZ.combo === 6 || BLITZ.combo === 9) comboBadge(BLITZ.combo);
+    setTimeout(() => { if (BLITZ) blitzQuestion(); }, 220);
+  } else {
+    BLITZ.wrong++; BLITZ.combo = 0;
+    btn.classList.add('no');
+    $$('.bz-opt').forEach(b => { if (b.dataset.bz === v.id) b.classList.add('ok'); });
+    sfx('wrong');
+    srsUpdate(v.id, false);
+    setTimeout(() => { if (BLITZ) blitzQuestion(); }, 750);
+  }
+  const p = $('#bzPts'); if (p) p.textContent = BLITZ.pts;
+}
+
+function blitzEnd() {
+  if (!BLITZ) return;
+  clearInterval(BLITZ.tick);
+  const B = BLITZ; BLITZ = null;
+  const total = B.right + B.wrong;
+  const acc = total ? Math.round(B.right / total * 100) : 0;
+  const gained = clamp(B.pts, 0, 90);
+  S.stats.answers += total; S.stats.correct += B.right;
+  bump('blitz'); bump('words', B.right);
+  sfx('complete');
+  if (B.pts >= 20) confetti(130);
+  $('#sessHearts').innerHTML = '';
+  $('#sessBar').style.width = '100%';
+  $('#sessBody').innerHTML = `
+    <div class="center" style="padding-top:10px">
+      <div class="lvl-badge" style="background:linear-gradient(150deg,var(--yellow),var(--yellow-dark));border-color:transparent;color:#3B2A00">
+        ${icon('bolt',54,2.6)}</div>
+      <div class="eyebrow">Blitz-Runde</div>
+      <h2 class="q-title" style="margin-top:6px">${B.pts} Punkte</h2>
+      <p class="sub mt6">${B.pts >= 30 ? 'Starkes Tempo!' : B.pts >= 15 ? 'Gute Runde.' : 'Nächstes Mal mehr – die Wörter kommen wieder.'}</p>
+    </div>
+    <div class="tiles mt20" style="grid-template-columns:repeat(3,1fr)">
+      <div class="tile" style="cursor:default"><span style="color:var(--green-dark)">${icon('check',20)}</span>
+        <b>${B.right}</b><span>richtig</span></div>
+      <div class="tile" style="cursor:default"><span style="color:var(--yellow-dark)">${icon('fire',20)}</span>
+        <b>${B.best}</b><span>beste Serie</span></div>
+      <div class="tile" style="cursor:default"><span style="color:var(--sky)">${icon('target',20)}</span>
+        <b>${acc}%</b><span>Treffer</span></div>
+    </div>
+    <div class="card mt14 center" style="background:linear-gradient(150deg,var(--green-dark),var(--green));color:#fff;border:none">
+      <div class="eyebrow" style="color:#BFF3DC">Verdient</div>
+      <b style="font-size:30px" id="bzXP">0</b><div style="font-size:13px;opacity:.9">XP</div>
+    </div>
+    <button class="btn mt20" type="button" id="bzAgain">${icon('bolt',18,2.6)} Noch eine Runde</button>
+    <button class="btn btn-ghost btn-sm mt10" type="button" id="bzDone">Fertig</button>`;
+  countUp($('#bzXP'), 0, gained, 900);
+  addXP(gained);
+  $('#bzAgain').onclick = startBlitz;
+  $('#bzDone').onclick = endGameMode;
+}
+
+/* ==========================================================================
+   34. SPIEL: PAARE FINDEN
+   ========================================================================== */
+let MATCH = null;
+
+function startMatch(n) {
+  Speech.stop(true);
+  SESS = null; RP = null; BLITZ = null;
+  document.body.classList.add('session');
+  hideFoot(); hideFeedback();
+  window.scrollTo(0, 0);
+  const pairs = shuffle(VOCAB.slice()).slice(0, n || 5);
+  const tiles = shuffle(pairs.map(v => ({ id:v.id, side:'de', txt:v.art + ' ' + v.w }))
+    .concat(pairs.map(v => ({ id:v.id, side:'bcs', txt:v.bcs }))));
+  MATCH = { pairs, tiles, found:[], sel:null, tries:0, t0:Date.now(), lock:false };
+  $('#sessHearts').innerHTML = `<span class="bz-clock">${icon('clock',15,2.6)}<b id="mtTime">0</b></span>`;
+  MATCH.tick = setInterval(() => {
+    const el = $('#mtTime');
+    if (el && MATCH) el.textContent = Math.round((Date.now() - MATCH.t0) / 1000);
+  }, 500);
+  matchRender();
+}
+
+function matchRender() {
+  if (!MATCH) return;
+  const M = MATCH;
+  $('#sessBar').style.width = (M.found.length / M.pairs.length * 100) + '%';
+  $('#sessBody').innerHTML = `
+    <div class="q-kicker">Paare finden</div>
+    <h2 class="q-title">Verbinde Wort und Bedeutung</h2>
+    <p class="q-sub">Tippe ein deutsches Wort und dann die passende Übersetzung.
+    ${M.pairs.length - M.found.length} Paare offen.</p>
+    <div class="mt-grid" role="group" aria-label="Wortkarten">
+      ${M.tiles.map((t, i) => `<button class="mt-tile${M.found.indexOf(t.id) >= 0 ? ' matched' : ''}${M.sel && M.sel.i === i ? ' sel' : ''}"
+        type="button" data-mt="${i}" ${M.found.indexOf(t.id) >= 0 ? 'disabled' : ''}
+        lang="${t.side === 'de' ? 'de' : 'bs'}">${esc(t.txt)}</button>`).join('')}
+    </div>`;
+  $$('.mt-tile').forEach(b => b.onclick = () => matchTap(+b.dataset.mt, b));
+}
+
+function matchTap(i, btn) {
+  const M = MATCH;
+  if (!M || M.lock) return;
+  const t = M.tiles[i];
+  if (M.found.indexOf(t.id) >= 0) return;
+  if (!M.sel) {
+    M.sel = { i, t };
+    btn.classList.add('sel');
+    sfx('tap');
+    if (t.side === 'de') Speech.say(t.txt, { role:'pflege' });
+    return;
+  }
+  if (M.sel.i === i) { M.sel = null; btn.classList.remove('sel'); return; }
+
+  const a = M.sel, b = { i, t };
+  M.tries++;
+  const hit = a.t.id === b.t.id && a.t.side !== b.t.side;
+  if (hit) {
+    M.found.push(t.id);
+    M.sel = null;
+    sfx('correct');
+    srsUpdate(t.id, true);
+    $$('.mt-tile').forEach(el => {
+      if (+el.dataset.mt === a.i || +el.dataset.mt === b.i) { el.classList.add('pop'); el.classList.remove('sel'); }
+    });
+    setTimeout(() => { if (MATCH) (MATCH.found.length === MATCH.pairs.length ? matchEnd() : matchRender()); }, 420);
+  } else {
+    M.lock = true;
+    sfx('wrong');
+    srsUpdate(a.t.id, false);
+    $$('.mt-tile').forEach(el => {
+      if (+el.dataset.mt === a.i || +el.dataset.mt === b.i) el.classList.add('bad');
+    });
+    setTimeout(() => { if (!MATCH) return; MATCH.sel = null; MATCH.lock = false; matchRender(); }, 620);
+  }
+}
+
+function matchEnd() {
+  if (!MATCH) return;
+  clearInterval(MATCH.tick);
+  const M = MATCH; MATCH = null;
+  const secs = Math.round((Date.now() - M.t0) / 1000);
+  const perfect = M.tries === M.pairs.length;
+  const gained = clamp(30 - Math.max(0, secs - 30) + (perfect ? 15 : 0), 10, 60);
+  bump('match'); bump('words', M.pairs.length);
+  sfx('complete'); confetti(perfect ? 150 : 100);
+  $('#sessHearts').innerHTML = '';
+  $('#sessBody').innerHTML = `
+    <div class="center" style="padding-top:10px">
+      <div class="lvl-badge" style="background:linear-gradient(150deg,var(--violet),#5B3FD6);border-color:transparent;color:#fff">
+        ${icon('cards',52,2.4)}</div>
+      <div class="eyebrow">Paare finden</div>
+      <h2 class="q-title" style="margin-top:6px">${perfect ? 'Ohne Fehlversuch!' : 'Alle Paare gefunden'}</h2>
+      <p class="sub mt6">${M.pairs.length} Paare in ${secs} Sekunden, ${M.tries} Versuche.</p>
+    </div>
+    <div class="card mt20">
+      <div class="eyebrow">Diese Wörter waren dabei</div>
+      <div class="row wrap mt10" style="gap:6px">
+        ${M.pairs.map(v => `<button class="tag cool" type="button" style="text-transform:none;font-size:12.5px;cursor:pointer"
+          data-say="${esc(v.art + ' ' + v.w)}">${icon('volume',12,2.6)} ${esc(v.art + ' ' + v.w)}</button>`).join('')}
+      </div>
+    </div>
+    <div class="card mt14 center" style="background:linear-gradient(150deg,var(--green-dark),var(--green));color:#fff;border:none">
+      <div class="eyebrow" style="color:#BFF3DC">Verdient</div>
+      <b style="font-size:30px" id="mtXP">0</b><div style="font-size:13px;opacity:.9">XP</div>
+    </div>
+    <button class="btn mt20" type="button" id="mtAgain">${icon('repeat',18,2.4)} Neue Runde</button>
+    <button class="btn btn-ghost btn-sm mt10" type="button" id="mtDone">Fertig</button>`;
+  countUp($('#mtXP'), 0, gained, 900);
+  addXP(gained);
+  $('#mtAgain').onclick = () => startMatch(5);
+  $('#mtDone').onclick = endGameMode;
+}
+
+/* ==========================================================================
+   35. SERIEN-ANZEIGE IN ÜBUNGEN
+   ========================================================================== */
+/** Kurzer Einblender bei 3, 5, 8 … richtigen Antworten in Folge. */
+function comboBadge(n) {
+  try { if (matchMedia('(prefers-reduced-motion: reduce)').matches) return; } catch (e) {}
+  const el = document.createElement('div');
+  el.className = 'combo-pop';
+  el.innerHTML = `${icon('fire',20,2.4)}<b>${n} in Serie!</b>`;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1300);
+}
 </script>
 </body>
 </html>
