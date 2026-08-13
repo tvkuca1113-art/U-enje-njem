@@ -1828,7 +1828,7 @@ function defaultState() {
     xp: 0, hearts: MAX_HEARTS, heartAt: Date.now(), streak: 0, freeze: 1,
     lastActive: dayKey(), dailyGoal: 20, dailyXP: 0, week: {},
     lessons: {}, vocab: {}, ach: {},
-    settings: { sound:true, trans:true, remind:true, remindTime:'19:00', speakRate:0.92, theme:'auto' },
+    settings: { sound:true, trans:true, remind:true, remindTime:'19:00', speakRate:1.0, theme:'auto' },
     stats: { lessons:0, perfect:0, speakCount:0, speakSec:0, reviewsRight:0, reviewsTotal:0,
              roleplays:0, longest:0, answers:0, correct:0,
              types: { image:{r:0,t:0}, build:{r:0,t:0}, listen:{r:0,t:0},
@@ -1894,6 +1894,9 @@ function loadState() {
     // Bestandsnutzer ohne Onboarding-Feld: als eingerichtet behandeln, wenn Fortschritt da ist
     if (parsed.onboarded === undefined)
       S.onboarded = (parsed.xp > 0) || Object.keys(parsed.lessons || {}).length > 0;
+    // Einmalige Korrektur: die alte Vorgabe 0.92 klang schleppend und maschinell
+    const oldRate = parsed.settings && parsed.settings.speakRate;
+    if (oldRate === 0.92 || oldRate === 0.95) S.settings.speakRate = 1.0;
     return true;
   } catch (e) { console.warn('Gespeicherter Fortschritt konnte nicht gelesen werden.', e); return false; }
 }
@@ -4136,13 +4139,102 @@ const Speech = {
   err: null,           // unsupported | novoice | timeout | <SpeechSynthesisErrorCode>
   seq: null,           // laufende Warteschlange
   watchdog: null,
+  keepTimer: null,     // hält lange Utterances in Chrome am Leben
+  cur: null,
   onState: null,       // Callback für die Oberfläche
 
   /* — Verfügbarkeit — */
   supported() { return 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window; },
 
+  /* ------------------------------------------------------------------
+     Echte Sprachaufnahmen (neuronale Stimmen)
+
+     Liegt neben der Seite ein Ordner audio/ mit einer manifest.json, spielt
+     die App fertige Audiodateien statt der Systemstimme. Erst damit klingt
+     alles nach einem echten Menschen — die Systemstimme kann immer nur so
+     gut sein wie das Gerät. Fehlt eine Datei, fällt die Zeile lautlos auf
+     die Systemstimme zurück; die App funktioniert also mit und ohne Ordner.
+
+     Erzeugt wird der Ordner von tools/generate-audio.mjs.
+     ------------------------------------------------------------------ */
+  files: null,          // { schlüssel: dateiname }
+  base: 'audio/',
+
+  /** Stabiler Schlüssel aus Text + Rolle. Muss identisch zum Generator sein. */
+  key(text, role) {
+    const t = String(text).toLowerCase()
+      .replace(/[„“”"'`]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    let h = 0x811c9dc5;                                  // FNV-1a, 32 Bit
+    for (let i = 0; i < t.length; i++) {
+      h ^= t.charCodeAt(i);
+      h = (h + ((h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24))) >>> 0;
+    }
+    return (role || 'default') + '-' + h.toString(36);
+  },
+
+  fileFor(text, role) {
+    if (!this.files) return null;
+    const f = this.files[this.key(text, role)] || this.files[this.key(text, 'default')];
+    return f ? this.base + f : null;
+  },
+
+  /** Manifest laden, falls vorhanden. Schlägt still fehl, wenn es keins gibt. */
+  loadFiles() {
+    if (typeof fetch !== 'function') return;
+    // Beim Öffnen als lokale Datei verbietet der Browser fetch() — gar nicht erst versuchen.
+    if (location.protocol === 'file:') return;
+    fetch(this.base + 'manifest.json')
+      .then(r => (r.ok ? r.json() : null))
+      .then(m => {
+        if (!m || !m.files || !Object.keys(m.files).length) return;
+        this.files = m.files;
+        if (m.base) this.base = m.base;
+        this.provider = 'files';
+      })
+      .catch(() => {});
+  },
+
+  /** Eine Zeile als Audiodatei abspielen. Bei Fehler: Systemstimme. */
+  stepFile(s, line, url) {
+    const a = new Audio(url);
+    a.preload = 'auto';
+    const base = s.rate || S.settings.speakRate || 1;
+    a.playbackRate = clamp(s.slow ? Math.max(base * .78, .75) : base, .7, 1.35);
+    a.preservesPitch = a.mozPreservesPitch = a.webkitPreservesPitch = true;  // sonst Micky-Maus
+    this.cur = a; this.curAudio = a;
+
+    const toSpeech = () => {                       // Datei kaputt oder fehlt
+      if (this.seq !== s) return;
+      line.noFile = true; this.curAudio = null;
+      this.step();
+    };
+
+    a.onplaying = () => {
+      clearTimeout(this.watchdog);
+      if (this.seq !== s) return;
+      this.state = 'playing'; this.emit();
+      if (s.onLine) s.onLine(s.i, 'start');
+    };
+    a.onended = () => {
+      this.curAudio = null;
+      if (this.seq !== s) return;
+      if (s.onLine) s.onLine(s.i, 'end');
+      s.i++;
+      setTimeout(() => { if (this.seq === s) this.step(); }, line.pause || 160);
+    };
+    a.onerror = toSpeech;
+
+    clearTimeout(this.watchdog);
+    this.watchdog = setTimeout(() => { if (this.seq === s && a.paused) toSpeech(); }, 4000);
+    const p = a.play();
+    if (p && typeof p.catch === 'function') p.catch(toSpeech);
+  },
+
   /** Stimmen einlesen. Chrome/Safari liefern die Liste asynchron nach. */
   init() {
+    this.loadFiles();                      // echte Aufnahmen, falls vorhanden
     if (!this.supported()) { this.err = 'unsupported'; return; }
     const load = () => {
       let all = [];
@@ -4159,18 +4251,46 @@ const Speech = {
     setTimeout(load, 350); setTimeout(load, 1400);
   },
 
-  /** Kleinere Zahl = bessere Stimme. */
+  /** Kleinere Zahl = bessere Stimme.
+      Ziel ist eine Stimme, die nach Mensch klingt. Wirklich menschlich klingen
+      nur die neuronalen Stimmen: die Microsoft-„Natural“-Stimmen in Edge, die
+      Premium-/Erweitert-Stimmen von Apple und die Netzstimme von Google. Alles
+      andere ist Signalverarbeitung aus den Nullerjahren. */
   rank(v) {
-    const n = (v.name || '') + ' ' + (v.voiceURI || '');
+    const n = ((v.name || '') + ' ' + (v.voiceURI || '')).toLowerCase();
     let s = 0;
-    if (!/de[-_]DE/i.test(v.lang)) s += 24;                       // AT/CH klingt für DACH-Pflege ungewohnt
-    if (/premium|enhanced|neural|natural|siri/i.test(n)) s -= 30; // hochwertige Systemstimmen
-    if (/google/i.test(n)) s -= 18;
-    if (/anna|helena|katja|petra|marlene|vicki|amala|klara|conrad|markus|yannick/i.test(n)) s -= 8;
-    if (/compact|eloquence|espeak|pico|festival|flite/i.test(n)) s += 60;  // Roboterstimmen
-    if (v.localService === false) s -= 5;                         // Netzstimmen meist besser
-    if (v.default) s -= 2;
+
+    // — Klare Roboterstimmen zuerst aussortieren —
+    if (/espeak|pico|festival|flite|eloquence|compact|klatt/.test(n)) return 900;
+
+    // — Stufe 1: neuronale Stimmen —
+    if (/natural|neural/.test(n))                       s -= 120;  // Microsoft Azure-Stimmen in Edge
+    if (/\bonline\b/.test(n))                           s -= 40;   // fast immer die Natural-Variante
+    if (/premium|enhanced|erweitert/.test(n))           s -= 100;  // Apple hochwertig
+    if (/siri/.test(n))                                 s -= 70;
+    if (/google/.test(n))                               s -= 55;   // Google Deutsch, solide Netzstimme
+
+    // — Stufe 2: namentlich bekannte gute deutsche Stimmen —
+    if (/seraphina|florian/.test(n))                    s -= 30;   // mehrsprachige Azure-Spitzenstimmen
+    if (/katja|conrad|amala|bernd|christoph|elke|gisela|kasper|killian|klarissa|louisa|maja|ralf/.test(n)) s -= 14;
+    if (/anna|helena|petra|marlene|vicki|klara|yannick|markus/.test(n)) s -= 10;
+
+    // — Stufe 3: bekannte Altlasten —
+    if (/hedda|stefan|microsoft server|sapi/.test(n))    s += 45;  // alte SAPI-Stimmen, blechern
+
+    // — Feinheiten —
+    if (!/de[-_]DE/i.test(v.lang || ''))                 s += 24;  // AT/CH klingt für die Pflege in DE ungewohnt
+    if (v.localService === false)                        s -= 12;  // Netzstimmen sind meist die neuronalen
+    if (v.default)                                       s -= 2;
     return s;
+  },
+
+  /** Klingt diese Stimme nach Maschine? Steuert den Hinweis in den Einstellungen. */
+  isWeak(v) {
+    if (!v) return true;
+    const n = ((v.name || '') + ' ' + (v.voiceURI || '')).toLowerCase();
+    if (/natural|neural|premium|enhanced|erweitert|siri|google/.test(n)) return false;
+    return true;
   },
 
   /** Sprecherrollen auf verschiedene Stimmen verteilen. */
@@ -4178,8 +4298,8 @@ const Speech = {
     let v = this.voices;
     const pref = (typeof S !== 'undefined' && S.settings) ? S.settings.voiceURI : null;
     if (pref) { const p = v.find(x => x.voiceURI === pref); if (p) v = [p].concat(v.filter(x => x !== p)); }
-    const fem = v.filter(x => /anna|helena|katja|petra|marlene|vicki|amala|klara|eva|female|weiblich|sandy/i.test(x.name));
-    const mas = v.filter(x => /conrad|markus|yannick|hans|stefan|daniel|male|männlich|christoph|bernd/i.test(x.name));
+    const fem = v.filter(x => /anna|helena|katja|petra|marlene|vicki|amala|klara|klarissa|eva|elke|gisela|louisa|maja|seraphina|tanja|female|weiblich|sandy/i.test(x.name));
+    const mas = v.filter(x => /conrad|markus|yannick|hans|stefan|daniel|florian|killian|kasper|ralf|male|männlich|christoph|bernd/i.test(x.name));
     const rest = v.filter(x => !fem.includes(x) && !mas.includes(x));
     const A = fem[0] || rest[0] || v[0] || null;              // Pflegekraft
     const B = fem[1] || rest[1] || mas[0] || A;               // Bewohnerin / Patientin
@@ -4190,15 +4310,19 @@ const Speech = {
     this.distinct = new Set(Object.values(this.byRole).filter(Boolean)).size;
   },
 
-  /** Feinabstimmung pro Rolle, damit Figuren unterscheidbar klingen. */
+  /** Feinabstimmung pro Rolle.
+      WICHTIG: kein pitch-Eingriff mehr. Fast alle Sprachmodule verschieben die
+      Tonhöhe durch simples Resampling — das erzeugt genau den blechernen
+      Roboterklang. Figuren werden ausschließlich über verschiedene Stimmen
+      unterschieden; das Tempo bleibt nahe 1.0, weil langsame Raten leiern. */
   tune: {
-    bewohner:   { rate:-.14, pitch:.94 },   // ältere Bewohnerin: langsamer, tiefer
-    patient:    { rate:-.08, pitch:1.0 },
-    arzt:        { rate:.05, pitch:.95 },
-    kollege:     { rate:.02, pitch:1.0 },
-    angehoerige: { rate:0,   pitch:1.06 },
-    chef:        { rate:0,   pitch:.93 },
-    pflege:      { rate:0,   pitch:1.0 }
+    bewohner:   { rate:-.04 },   // ältere Bewohnerin: eine Spur ruhiger
+    patient:    { rate:-.02 },
+    arzt:        { rate:.02 },
+    kollege:     { rate:0 },
+    angehoerige: { rate:0 },
+    chef:        { rate:0 },
+    pflege:      { rate:0 }
   },
 
   /** Text in Sätze zerlegen — ohne Lookbehind (iOS-Safari-kompatibel). */
@@ -4213,16 +4337,22 @@ const Speech = {
     return out.length ? out : [String(t)];
   },
 
-  /** Einzelnen Text sprechen. opt: {role, rate, slow, onEnd} */
+  /** Einzelnen Text sprechen. opt: {role, rate, slow, onEnd}
+      Der Text geht als EIN Stück an das Sprachmodul. Früher wurde er in Sätze
+      zerlegt und einzeln gesprochen — dabei geht die Satzmelodie verloren und
+      zwischen den Sätzen entstehen abgehackte Pausen. Nur sehr lange Texte
+      werden geteilt, weil manche Browser bei Überlänge abbrechen. */
   say(text, opt = {}) {
-    if (!this.supported()) { toast('Dieses Gerät kann keine Sprachausgabe.', 'warn'); return null; }
+    if (!this.supported() && !this.files) { toast('Dieses Gerät kann keine Sprachausgabe.', 'warn'); return null; }
     const role = opt.role || 'default';
-    return this.play(this.split(text).map(t => ({ de:t, role })), opt);
+    const clean = String(text).replace(/[„“”"]/g, '').trim();
+    const parts = clean.length > 200 ? this.split(clean) : [clean];
+    return this.play(parts.map(t => ({ de:t, role, pause:90 })), opt);
   },
 
   /** Zeilenfolge (Dialog) abspielen. opt: {rate, slow, loop, from, onLine, onEnd} */
   play(lines, opt = {}) {
-    if (!this.supported()) return null;
+    if (!this.supported() && !this.files) return null;
     this.stop(true);
     this.seq = { lines, i: opt.from || 0, rate: opt.rate, slow: !!opt.slow, loop: !!opt.loop,
                  onLine: opt.onLine || null, onEnd: opt.onEnd || null, retried: false };
@@ -4239,25 +4369,37 @@ const Speech = {
       else { this.state = 'idle'; const cb = s.onEnd; this.seq = null; this.emit(); if (cb) cb(); return; }
     }
     const line = s.lines[s.i];
-    const u = new SpeechSynthesisUtterance(String(line.de).replace(/[„“”"]/g, ''));
+    const text = String(line.de).replace(/[„“”"]/g, '');
+
+    // Gibt es eine echte Aufnahme für diese Zeile, hat sie Vorrang.
+    if (!line.noFile) {
+      const url = this.fileFor(text, line.role);
+      if (url) { this.stepFile(s, line, url); return; }
+    }
+    if (!this.supported()) { this.fail('unsupported'); return; }
+
+    const u = new SpeechSynthesisUtterance(text);
     const voice = this.byRole[line.role] || this.byRole.default;
     if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = 'de-DE'; }
     const tu = this.tune[line.role] || {};
-    const base = s.rate || S.settings.speakRate || .95;
-    u.rate  = clamp((s.slow ? base * .6 : base) + (tu.rate || 0), .5, 1.4);
-    u.pitch = tu.pitch || 1;
+    const base = s.rate || S.settings.speakRate || 1;
+    // Zum Mitsprechen langsamer, aber nicht unter 0.75 — darunter leiert jede Stimme.
+    u.rate  = clamp((s.slow ? Math.max(base * .78, .75) : base) + (tu.rate || 0), .7, 1.35);
+    u.pitch = 1;   // niemals verstellen, siehe Kommentar bei tune
 
     u.onstart = () => {
       clearTimeout(this.watchdog);
+      this.keepalive(true);
       if (this.seq !== s) return;
       this.state = 'playing'; this.emit();
       if (s.onLine) s.onLine(s.i, 'start');
     };
     u.onend = () => {
+      this.keepalive(false);
       if (this.seq !== s) return;
       if (s.onLine) s.onLine(s.i, 'end');
       s.i++;
-      setTimeout(() => { if (this.seq === s) this.step(); }, line.pause || 260);
+      setTimeout(() => { if (this.seq === s) this.step(); }, line.pause || 160);
     };
     u.onerror = (e) => {
       const code = (e && e.error) || 'error';
@@ -4274,9 +4416,23 @@ const Speech = {
     try { speechSynthesis.speak(u); } catch (e) { this.fail('exception'); }
   },
 
+  /** Chrome beendet Utterances nach etwa 15 Sekunden ohne Vorwarnung.
+      Ein regelmäßiges resume() hält die Ausgabe am Leben; ist nichts pausiert,
+      bleibt der Aufruf wirkungslos. */
+  keepalive(on) {
+    if (this.keepTimer) { clearInterval(this.keepTimer); this.keepTimer = null; }
+    if (!on) return;
+    this.keepTimer = setInterval(() => {
+      if (!speechSynthesis.speaking) { this.keepalive(false); return; }
+      if (this.state !== 'playing') return;          // eine echte Pause nicht aufheben
+      try { speechSynthesis.resume(); } catch (e) {}
+    }, 8000);
+  },
+
   /** Fehler: einmal automatisch wiederholen, dann Ersatzweg anbieten. */
   fail(code) {
     clearTimeout(this.watchdog);
+    this.keepalive(false);
     const s = this.seq;
     this.err = code;
     if (s && !s.retried) {
@@ -4291,6 +4447,11 @@ const Speech = {
 
   pause() {
     if (!this.seq) return;
+    if (this.curAudio) {                       // Aufnahme läuft
+      try { this.curAudio.pause(); } catch (e) {}
+      this.state = 'paused'; this.emit();
+      return;
+    }
     try { speechSynthesis.pause(); } catch (e) {}
     this.state = 'paused'; this.emit();
     // iOS ignoriert pause() gelegentlich: dann harter Stopp mit Merkposition
@@ -4306,6 +4467,12 @@ const Speech = {
   },
 
   resume() {
+    if (this.curAudio && this.curAudio.paused) {
+      const p = this.curAudio.play();
+      if (p && typeof p.catch === 'function') p.catch(() => {});
+      this.state = 'playing'; this.emit();
+      return;
+    }
     if (this.softPause) {
       const p = this.softPause; this.softPause = null;
       this.play(p.lines, { from:p.i, rate:p.rate, slow:p.slow, loop:p.loop, onLine:p.onLine, onEnd:p.onEnd });
@@ -4317,7 +4484,12 @@ const Speech = {
 
   stop(quiet) {
     clearTimeout(this.watchdog);
+    this.keepalive(false);
     this.seq = null; this.softPause = null;
+    if (this.curAudio) {
+      try { this.curAudio.pause(); this.curAudio.onended = this.curAudio.onerror = null; } catch (e) {}
+      this.curAudio = null;
+    }
     try { speechSynthesis.cancel(); } catch (e) {}
     this.state = 'idle';
     if (!quiet) this.emit();
@@ -4328,14 +4500,20 @@ const Speech = {
 
   /** Klartext-Diagnose für die Einstellungen. */
   status() {
+    if (this.files) return {
+      ok: true, weak: false, voice: null,
+      txt: 'Echte Sprachaufnahmen aktiv · ' + Object.keys(this.files).length + ' Aufnahmen. '
+         + 'Der Klang ist auf jedem Gerät gleich; die Systemstimme springt nur ein, wenn eine Aufnahme fehlt.'
+    };
     if (!this.supported()) return { ok:false, txt:'Dieses Gerät bietet keine Sprachausgabe im Browser.' };
     if (!this.ready)      return { ok:false, txt:'Keine deutsche Stimme gefunden. Bitte im Betriebssystem eine deutsche Stimme installieren.' };
     const v = this.byRole.default;
-    const weak = /compact|espeak|pico|eloquence/i.test(v ? v.name : '');
+    const weak = this.isWeak(v);
     return {
       ok: !weak,
       txt: weak
-        ? 'Die gefundene Stimme klingt maschinell. Für deutlich besseren Klang eine hochwertige deutsche Stimme im System nachladen.'
+        ? 'Aktive Stimme: ' + (v ? v.name : '–') + ' — sie klingt maschinell. Das liegt am Gerät, nicht an der App: '
+          + 'der Browser darf nur die Stimmen benutzen, die im System installiert sind. Mit einer neuronalen Stimme klingt alles wie ein echter Mensch.'
         : 'Stimme aktiv: ' + (v ? v.name : '–') + (this.distinct > 1 ? ' · ' + this.distinct + ' Sprecherstimmen' : ' · nur eine Stimme verfügbar'),
       voice: v, weak
     };
@@ -4350,10 +4528,13 @@ const speechOK = () => Speech.supported();
 function voiceHelpText() {
   const ua = navigator.userAgent || '';
   if (/iPhone|iPad|iPod|Macintosh/i.test(ua))
-    return 'iPhone/iPad: Einstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimmen → Deutsch → eine Stimme mit „Premium“ oder „Erweitert“ laden.';
+    return 'iPhone/iPad: Einstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimmen → Deutsch → eine Stimme mit „Premium“ laden (ca. 100 MB). '
+         + 'Danach diese Seite neu laden und die Stimme unten auswählen.';
   if (/Android/i.test(ua))
-    return 'Android: Einstellungen → System → Sprachen → Sprachausgabe → Google Text-in-Sprache → Sprachdaten für Deutsch installieren.';
-  return 'Windows: Einstellungen → Zeit und Sprache → Sprache → Deutsch → Sprachpaket mit Sprachausgabe hinzufügen. In Chrome stehen zusätzlich Online-Stimmen bereit.';
+    return 'Android: Einstellungen → System → Sprachen → Sprachausgabe → als Modul „Google Text-in-Sprache“ wählen → Sprachdaten → Deutsch installieren. '
+         + 'Danach diese Seite neu laden und „Google Deutsch“ unten auswählen.';
+  return 'Am Computer klingt Microsoft Edge am besten: dort gibt es deutsche Stimmen mit dem Zusatz „Natural“ (z. B. Katja, Conrad), die kaum von einem Menschen zu unterscheiden sind. '
+       + 'In Windows lassen sie sich unter Einstellungen → Zeit und Sprache → Sprache → Deutsch → Sprachpaket nachladen.';
 }
 
 /** Stimmenauswahl und Audio-Diagnose */
